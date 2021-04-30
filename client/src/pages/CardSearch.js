@@ -1,11 +1,9 @@
 import React from 'react'
 
-function NoMatch() {
+export default function CardSearch() {
     return (
         <div>
             
         </div>
     )
 }
-
-export default NoMatch
