@@ -1,11 +1,9 @@
 import React from 'react'
 
-function NoMatch() {
+export default function MatchInput() {
     return (
         <div>
             
         </div>
     )
 }
-
-export default NoMatch

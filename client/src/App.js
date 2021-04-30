@@ -1,28 +1,30 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./pages/Home";
-import Detail from "./pages/Detail";
+import { Redirect, Route, Switch } from "react-router-dom";
+
+import Analytics from "./pages/Analytics";
+import CardSearch from "./pages/CardSearch";
+import LandingPage from "./pages/LandingPage";
+import LifeCounter from "./pages/LifeCounter";
+import MatchInput from "./pages/MatchInput";
+import Menu from "./pages/Menu";
 import NoMatch from "./pages/NoMatch";
-import Nav from "./components/Nav";
-import { StoreProvider } from "./utils/GlobalState";
-import FavoritesList from "./pages/FavoritesList";
 
 function App() {
+
+  if (!userLoggedIn) return <Redirect to={LandingPage} />
+
   return (
-    <Router>
       <div>
-        <StoreProvider>
           <Nav />
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/favorites" component={FavoritesList} />
-            <Route exact path="/posts/:id" component={Detail} />
+            <Route exact path="/" component={Menu} />
+            <Route exact path="/Analytics" component={Analytics} />
+            <Route exact path="/CardSearch" component={CardSearch} />
+            <Route exact path="/LifeCounter" component={LifeCounter} />
+            <Router exact path="/MatchInput" component={MatchInput} />
             <Route component={NoMatch} />
           </Switch>
-        </StoreProvider>
       </div>
-    </Router>
   );
 }
 
