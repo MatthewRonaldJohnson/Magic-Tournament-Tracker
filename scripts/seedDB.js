@@ -4,7 +4,11 @@ const db = require('../models');
 // This file empties the Posts collection and inserts the books below
 
 mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/TournamentTracker'
+  process.env.MONGODB_URI || 'mongodb://localhost/TournamentTracker',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }
 );
 
 const userSeed = [
@@ -123,7 +127,7 @@ const matchSeed = [
     opponentsName: 'Matthew',
   },
   {
-    _id: 0,
+    _id: 2,
     opponentDeck: 6,
     wins: 3,
     losses: 0,
@@ -133,7 +137,7 @@ const matchSeed = [
   },
 ];
 
-db.User.remove({})
+db.User.deleteMany({})
   .then(() => db.User.collection.insertMany(userSeed))
   .then((data) => {
     console.log(data.result.n + ' records inserted!');
@@ -144,8 +148,10 @@ db.User.remove({})
     process.exit(1);
   });
 
-db.Deck.remove({})
-  .then(() => db.Deck.collection.insertMany(deckSeed))
+db.Deck.deleteMany({})
+  .then(() =>
+    db.Deck.collection.insertMany(deckSeed)
+  )
   .then((data) => {
     console.log(data.result.n + ' records inserted!');
     process.exit(0);
@@ -154,7 +160,8 @@ db.Deck.remove({})
     console.error(err);
     process.exit(1);
   });
-db.Tournament.remove({})
+
+db.Tournament.deleteMany({})
   .then(() => db.Tournament.collection.insertMany(tournamentSeed))
   .then((data) => {
     console.log(data.result.n + ' records inserted!');
@@ -165,7 +172,7 @@ db.Tournament.remove({})
     process.exit(1);
   });
 
-db.MatchData.remove({})
+db.MatchData.deleteMany({})
   .then(() => db.MatchData.collection.insertMany(matchSeed))
   .then((data) => {
     console.log(data.result.n + ' records inserted!');
