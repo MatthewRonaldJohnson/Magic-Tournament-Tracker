@@ -14,6 +14,6 @@ const MatchDataSchema = new Schema({
   opponentsName: { type: String },
 });
 
-const MatchData = model('MatchData', MatchDataSchema);
+const MatchData = mongoose.model('MatchData', MatchDataSchema);
 
 module.exports = MatchData;
