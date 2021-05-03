@@ -1,0 +1,56 @@
+body{
+    background-color: rgb(49, 49, 49)
+}
+
+
+#player-one {
+    background-color: rgb(35, 35, 35);
+    text-align: center;
+    color: black;
+    border-style: solid;
+    border-width: 5px;
+    border-color: black;
+    font-family: Impact,'Arial Narrow Bold', sans-serif;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+#player1wins {
+    color: whitesmoke;
+    font-family: Impact, 'Arial Narrow Bold', sans-serif
+}
+
+#player2wins {
+    color: whitesmoke;
+    font-family: Impact, 'Arial Narrow Bold', sans-serif
+}
+
+#player1life {
+    color:  whitesmoke;
+}
+
+#player2life {
+    color:  whitesmoke;
+}
+
+.player-name {
+    text-align: center;
+}
+
+#player-two { 
+    background-color: rgb(35, 35, 35);
+    text-align: center;
+    border-style: solid;
+    border-width: 5px;
+    font-family: Impact, 'Arial Narrow Bold', sans-serif;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+#buttons {
+    text-align: center;
+}
+
+#row {
+    text-align: center;
+}
