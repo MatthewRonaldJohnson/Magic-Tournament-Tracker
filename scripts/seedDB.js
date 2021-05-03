@@ -1,41 +1,62 @@
-const mongoose = require("mongoose");
-const db = require("../models");
+const mongoose = require('mongoose');
+const db = require('../models');
 
 // This file empties the Posts collection and inserts the books below
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactcms");
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/TournamentTracker'
+);
 
-const bookSeed = [
+const userSeed = [
   {
-    title: "Hello World",
-    author: "admin",
-    body:
-      "Welcome to your first post! To create posts create a title and body. Don't forget to include your screen name!",
-    date: new Date(Date.now())
+    userName: 'Matthew',
+    password: 'root1234',
+    decks: [1, 2, 3],
+    tournaments: [0],
   },
   {
-    title: "The Second Post",
-    author: "admin",
-    body:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    date: new Date(Date.now())
+    userName: 'James',
+    password: 'root1234',
+    decks: [4, 5],
+    tournaments: [2],
   },
   {
-    title: "Another One",
-    author: "admin",
-    body:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    date: new Date(Date.now())
-  }
+    userName: 'Manny',
+    password: 'root1234',
+    decks: [6],
+    tournaments: [1],
+  },
 ];
 
-db.Post.remove({})
-  .then(() => db.Post.collection.insertMany(bookSeed))
-  .then(data => {
-    console.log(data.result.n + " records inserted!");
+
+db.User.remove({})
+  .then(() => db.User.collection.insertMany(userSeed))
+  .then((data) => {
+    console.log(data.result.n + ' records inserted!');
     process.exit(0);
   })
-  .catch(err => {
+  .catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+
+db.Deck.remove({})
+  .then(() => db.Deck.collection.insertMany(deckSeed))
+  .then((data) => {
+    console.log(data.result.n + ' records inserted!');
+    process.exit(0);
+  })
+  .catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+db.Tournament.remove({})
+  .then(() => db.Tournament.collection.insertMany(tournamentSeed))
+  .then((data) => {
+    console.log(data.result.n + ' records inserted!');
+    process.exit(0);
+  })
+  .catch((err) => {
     console.error(err);
     process.exit(1);
   });
