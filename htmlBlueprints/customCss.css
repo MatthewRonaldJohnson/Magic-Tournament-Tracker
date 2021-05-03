@@ -14,9 +14,14 @@ body {
 }
 
 .cardData {
-    /* background-color: var(--secondary) */
+    background-color: var(--primary);
+    font-weight: bold;
 }
 
 .cardImage-container {
     height: 100px;
+}
+
+.deckInput {
+    background-color: var(--primary);
 }

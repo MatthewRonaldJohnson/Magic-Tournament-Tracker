@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="../client/public/favicon.ico">
+    <title>Magic Tournament Tracker</title>
+    <link rel="stylesheet" href="../client/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./themedBS4.css">
+    <link rel="stylesheet" href="./customCss.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="../client/public/favicon.ico" width="30" height="30" class="d-inline-block align-top" alt=""
+                loading="lazy">
+            MTT
+        </a>
+        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Logout</button>
+    </nav>
+
+    <main>
+        <div class="container mt-2">
+            <div class="row my-1">
+                <div class="input-group col-12">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="tournamentName">Tournament: </label>
+                    </div>
+
+                    <input id="tournamentName" list="prevTournaments" class="form-control">
+                    <datalist id="prevTournaments">
+                        <option value="FNM">
+                        <option value="MCQ">
+                        <option value="Grand Prix">
+                    </datalist>
+                    <div class="input-group-append">
+
+                        <div class="input-group-text">
+
+                            <input id="freePlayCheck" type="checkbox">
+                            <label class="form-check-label ml-1" for="freePlayCheck">Free Play</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row my-1">
+                <div id="user" class="deckInput col-12 col-lg-6">
+                    <div class="form-group">
+                        <label for="userDeckname">Your Deck Name: </label>
+                        <input id="userDeckName" class="form-control" type="text">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="White">
+                            <label class="form-check-label" for="White">White</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="Blue">
+                            <label class="form-check-label" for="Blue">Blue</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="Black">
+                            <label class="form-check-label" for="Black">Black</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="Red">
+                            <label class="form-check-label" for="Red">Red</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="Green">
+                            <label class="form-check-label" for="Green">Green</label>
+                        </div>
+                    </div>
+                </div>
+                <div id="opponent" class="deckInput col-12 col-lg-6">
+                    <div class="form-group">
+                        <label for="userDeckname">Opponent Deck Name: </label>
+                        <input id="userDeckName" class="form-control" type="text">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="White">
+                            <label class="form-check-label" for="White">White</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="Blue">
+                            <label class="form-check-label" for="Blue">Blue</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="Black">
+                            <label class="form-check-label" for="Black">Black</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="Red">
+                            <label class="form-check-label" for="Red">Red</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="Green">
+                            <label class="form-check-label" for="Green">Green</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row my-1">
+                <div class="col-12">
+                    <div class="form-row">
+                        <div class="col-6">
+                            <label>Wins</label>
+                          <input type="number" class="form-control" placeholder="Wins"  min="0" max="2">
+                        </div>
+                        <div class="col-6">
+                            <label>Losses</label>
+                          <input type="number" class="form-control" placeholder="Losses" min="0" max="2">
+                        </div>
+                        <div class="col-12">
+                            <label>Opponent Name</label>
+                            <input type="text" class="form-control" placeholder="Opponent Name">
+                          </div>
+                          <div class="col-12">
+                            <label>Notes</label>
+                            <textarea class="form-control" name="" id=""></textarea>
+                          </div>
+                      </div>
+
+                </div>
+            </div>
+            <div class="row my-1">
+                <button type="button" class="btn btn-primary col-12 my-3 p-4">Submit</button>
+            </div>
+
+
+        </div>
+
+        <footer class="footer text-light bg-dark">
+            Created by Matthew, James, and Manny © 2021
+        </footer>
+    </main>
+</body>
+
+</html>
