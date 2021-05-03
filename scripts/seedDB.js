@@ -46,6 +46,93 @@ const tournamentSeed = [
   },
 ];
 
+const deckSeed = [
+  {
+    _id: 1,
+    deckName: 'Rogues',
+    whiteMana: false,
+    blueMana: true,
+    blackMana: true,
+    redMana: false,
+    greenMana: false,
+  },
+  {
+    _id: 2,
+    deckName: 'Izzet',
+    whiteMana: false,
+    blueMana: true,
+    blackMana: false,
+    redMana: true,
+    greenMana: false,
+  },
+  {
+    _id: 3,
+    deckName: 'Rakdos',
+    whiteMana: false,
+    blueMana: false,
+    blackMana: true,
+    redMana: true,
+    greenMana: false,
+  },
+  {
+    _id: 4,
+    deckName: 'Jund',
+    whiteMana: false,
+    blueMana: false,
+    blackMana: true,
+    redMana: true,
+    greenMana: true,
+  },
+  {
+    _id: 5,
+    deckName: 'Tron',
+    whiteMana: false,
+    blueMana: false,
+    blackMana: false,
+    redMana: false,
+    greenMana: true,
+  },
+  {
+    _id: 6,
+    deckName: 'UW Control',
+    whiteMana: true,
+    blueMana: true,
+    blackMana: false,
+    redMana: false,
+    greenMana: false,
+  },
+];
+
+const matchSeed = [
+  {
+    _id: 1,
+    opponentDeck: 5,
+    wins: 2,
+    losses: 1,
+    result: true,
+    notes: "Doesn't have a good answer to early agro",
+    opponentsName: 'James',
+  },
+  {
+    _id: 0,
+    opponentDeck: 2,
+    wins: 1,
+    losses: 2,
+    result: false,
+    notes: '',
+    opponentsName: 'Matthew',
+  },
+  {
+    _id: 0,
+    opponentDeck: 6,
+    wins: 3,
+    losses: 0,
+    result: true,
+    notes: '',
+    opponentsName: 'Manny',
+  },
+];
+
 db.User.remove({})
   .then(() => db.User.collection.insertMany(userSeed))
   .then((data) => {
