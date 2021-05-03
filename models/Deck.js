@@ -11,6 +11,6 @@ const DeckSchema = new Schema({
   greenMana: { type: Boolean, required: true}, 
 });
 
-const Deck = model('Deck', DeckSchema);
+const Deck = mongoose.model('Deck', DeckSchema);
 
 module.exports = Deck;
