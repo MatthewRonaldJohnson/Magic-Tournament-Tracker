@@ -12,3 +12,11 @@ body {
     clear: both;
     background-color: var(--success);
 }
+
+.cardData {
+    /* background-color: var(--secondary) */
+}
+
+.cardImage-container {
+    height: 100px;
+}
