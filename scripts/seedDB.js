@@ -28,6 +28,23 @@ const userSeed = [
   },
 ];
 
+const tournamentSeed = [
+  {
+    _id: 1,
+    deck: 1,
+    tournamentData: [0],
+  },
+  {
+    _id: 0,
+    deck: 4,
+    tournamentData: [1],
+  },
+  {
+    _id: 2,
+    deck: 3,
+    tournamentData: [2],
+  },
+];
 
 db.User.remove({})
   .then(() => db.User.collection.insertMany(userSeed))
