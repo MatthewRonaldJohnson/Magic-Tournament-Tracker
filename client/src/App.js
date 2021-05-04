@@ -13,13 +13,29 @@ import NoMatch from "./pages/NoMatch";
 
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
+import API from "./utils/API";
+import { useStoreContext } from "./utils/GlobalState";
+import { SET_USER } from "./utils/actions";
 
 function App() {
   const { isAuthenticated, user } = useAuth0();
-
+  const [state, dispatch] = useStoreContext();
+  
   if (!isAuthenticated) return <LandingPage />
-
-  console.log(user)
+  
+  API.getUserId(user.email)
+    .then(res => {
+      if (state.userId !== res.data._id) {
+        dispatch({
+          type: SET_USER,
+          payload: {
+            id: res.data._id,
+            tournaments: res.data.tournaments,
+            decks: res.data.decks
+          }
+        })
+      }
+    })
 
   return (
       <div>
