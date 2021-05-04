@@ -1,3 +1,11 @@
+:root {
+    --whiteMana: #F9FAF4;
+    --blueMana: #0E68AB;
+    --blackMana: #150B00;
+    --redMana: #D3202A;
+    --greenMana: #00733E;
+}
+
 .footer {
     position: fixed;
     bottom: 0;
@@ -35,7 +43,7 @@ body {
     display: inline-block;
     
     /*16px width of fake manaCheckBox + 6px distance between fake manaCheckBox and text*/
-    padding-left: 22px;
+    padding-left: 18px;
 }
 
 .manaCheckBox label::before{
@@ -58,18 +66,17 @@ body {
 }
 
 .white input[type="checkbox"]:checked + label::before {
-    background-color: #F9FAF4;
+    background-color: var(--whiteMana);
 }
-
 .blue input[type="checkbox"]:checked + label::before {
-    background-color: #0E68AB;
+    background-color: var(--blueMana);
 }
 .black input[type="checkbox"]:checked + label::before {
-    background-color: #150B00;
+    background-color: var(--blackMana);
 }
 .red input[type="checkbox"]:checked + label::before {
-    background-color: #D3202A;
+    background-color: var(--redMana);
 }
 .green input[type="checkbox"]:checked + label::before {
-    background-color: #00733E;
+    background-color: var(--greenMana);
 }

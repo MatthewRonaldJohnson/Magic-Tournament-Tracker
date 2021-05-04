@@ -13,20 +13,17 @@ mongoose.connect(
 
 const userSeed = [
   {
-    userName: 'Matthew',
-    password: 'root1234',
+    email: "matthewronaldjohnson@gmail.com",
     decks: [1, 2, 3],
     tournaments: [0],
   },
   {
-    userName: 'James',
-    password: 'root1234',
+    email: "james@test.com",
     decks: [4, 5],
     tournaments: [2],
   },
   {
-    userName: 'Manny',
-    password: 'root1234',
+    email: "manny@test.com",
     decks: [6],
     tournaments: [1],
   },
