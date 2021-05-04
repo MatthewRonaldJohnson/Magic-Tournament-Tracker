@@ -10,7 +10,8 @@ import LifeCounter from "./pages/LifeCounter";
 import MatchInput from "./pages/MatchInput";
 import Menu from "./pages/Menu";
 import NoMatch from "./pages/NoMatch";
-
+import "./utils/css/customCss.css"
+import "./utils/css/themedBS4.css";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 
