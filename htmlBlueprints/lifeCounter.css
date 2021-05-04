@@ -1,54 +1,44 @@
 body{
-    background-color: rgb(49, 49, 49)
+    background-color: rgb(88, 86, 86)
+    
 }
 
 
 #player-one {
-    background-color: rgb(35, 35, 35);
+    background-color: rgb(201, 105, 105);
     text-align: center;
-    color: black;
+    color: rgb(19, 17, 17);
     border-style: solid;
     border-width: 5px;
-    border-color: black;
+    border-color: rgb(180, 29, 29);
     font-family: Impact,'Arial Narrow Bold', sans-serif;
-    padding-bottom: 5px;
+    padding-bottom: 100px;
     padding-top: 5px;
+    font-size: large;
 }
 
-#player1wins {
-    color: whitesmoke;
-    font-family: Impact, 'Arial Narrow Bold', sans-serif
-}
-
-#player2wins {
-    color: whitesmoke;
-    font-family: Impact, 'Arial Narrow Bold', sans-serif
-}
-
-#player1life {
-    color:  whitesmoke;
-}
-
-#player2life {
-    color:  whitesmoke;
-}
 
 .player-name {
     text-align: center;
 }
 
 #player-two { 
-    background-color: rgb(35, 35, 35);
+    
+    background-color: rgb(99, 99, 170);
     text-align: center;
     border-style: solid;
+    border-color: rgb(15, 15, 189);
     border-width: 5px;
     font-family: Impact, 'Arial Narrow Bold', sans-serif;
-    padding-bottom: 5px;
+    padding-bottom: 100px;
     padding-top: 5px;
+    font-size: large;
 }
 
 #buttons {
-    text-align: center;
+    text-align: center; 
+    font-size: large;
+    
 }
 
 #row {
