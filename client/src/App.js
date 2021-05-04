@@ -15,9 +15,11 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 
 function App() {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
 
   if (!isAuthenticated) return <LandingPage />
+
+  console.log(user)
 
   return (
       <div>
