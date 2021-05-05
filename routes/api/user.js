@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Tournament } = require("../../models")
+const { User, Tournament, MatchData } = require("../../models")
 
 // /api/user/:email
 router.get('/:email', async (req, res) => {
@@ -10,14 +10,10 @@ router.get('/:email', async (req, res) => {
             decks: [],
             tournaments: []
         })
-        console.log('Not current User')
     }
-    console.log('+++++++++++++++++++++++++++++++')
-    let testArr = ["0"]
-    //usersTournaments = await Tournament.find({"_id": {$in: currentUser.tournaments}})
-    usersTournaments = await Tournament.find({_id : {$in: testArr}})
-    console.log(usersTournaments)
-    
+    usersTournaments = await Tournament.find({_id : {$in: currentUser.tournaments}})
+    currentUser.tournaments = usersTournaments;
+    console.log(currentUser)
     res.json(currentUser);
 })
 
