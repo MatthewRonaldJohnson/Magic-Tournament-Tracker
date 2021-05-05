@@ -7,23 +7,23 @@ mongoose.connect(
   process.env.MONGODB_URI || 'mongodb://localhost/TournamentTracker',
   {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   }
 );
 
 const userSeed = [
   {
-    email: "matthewronaldjohnson@gmail.com",
+    email: 'matthewronaldjohnson@gmail.com',
     decks: [1, 2, 3],
     tournaments: [0],
   },
   {
-    email: "jamesfswebdev@gmail.com",
+    email: 'jamesfswebdev@gmail.com',
     decks: [4, 5],
     tournaments: [2],
   },
   {
-    email: "manny@test.com",
+    email: 'manny@test.com',
     decks: [6],
     tournaments: [1],
   },
@@ -32,18 +32,18 @@ const userSeed = [
 const tournamentSeed = [
   {
     _id: 1,
-    tournamentName: "MTG West Prelims",
+    tournamentName: 'MTG West Prelims',
     deck: 1,
     tournamentData: [0],
   },
   {
-    tournamentName: "MTG East Finals",
+    tournamentName: 'MTG East Finals',
     _id: 0,
     deck: 4,
     tournamentData: [1],
   },
   {
-    tournamentName: "MTG NA Regionals",
+    tournamentName: 'MTG NA Regionals',
     _id: 2,
     deck: 3,
     tournamentData: [2],
@@ -149,9 +149,7 @@ db.User.deleteMany({})
   });
 
 db.Deck.deleteMany({})
-  .then(() =>
-    db.Deck.collection.insertMany(deckSeed)
-  )
+  .then(() => db.Deck.collection.insertMany(deckSeed))
   .then((data) => {
     console.log(data.result.n + ' records inserted!');
     process.exit(0);
