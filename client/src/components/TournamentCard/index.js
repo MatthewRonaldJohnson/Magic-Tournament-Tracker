@@ -21,9 +21,8 @@ class TournamentCard extends Component {
               className="form-control"
             />
             <datalist id="prevTournaments">
-              {/* Data needs to be converted over to the proper structure whenever the user state gets sorted so it renders the tournament names instead of just the id # */}
               {this.props.tournaments.map((data) => {
-                return <option value={data} key={data} />;
+                return <option value={data.tournamentName} key={data._id} />;
               })}
             </datalist>
             <div className="input-group-append">
