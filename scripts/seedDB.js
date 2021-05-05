@@ -15,18 +15,18 @@ const userSeed = [
   {
 
     email: 'matthewronaldjohnson@gmail.com',
-    decks: [1, 2, 3],
-    tournaments: [0],
+    decks: [],
+    tournaments: [],
   },
   {
     email: 'jamesfswebdev@gmail.com',
-    decks: [4, 5],
-    tournaments: [2],
+    decks: [],
+    tournaments: [],
   },
   {
     email: 'manny@test.com',
-    decks: [6],
-    tournaments: [1],
+    decks: [],
+    tournaments: [],
   },
 ];
 
@@ -41,7 +41,7 @@ const tournamentSeed = [
     tournamentData: [],
   },
   {
-    tournamentName: 'MTG NA Regionals'
+    tournamentName: 'MTG NA Regionals',
     tournamentData: [],
   },
 ];
