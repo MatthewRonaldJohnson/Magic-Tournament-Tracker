@@ -24,20 +24,23 @@ function App() {
   const [state, dispatch] = useStoreContext();
   
   if (!isAuthenticated) return <LandingPage />
+
+  if(!state.userId){
+    API.getUserId(user.email)
+      .then(res => {
+        if (state.userId !== res.data._id) {
+          dispatch({
+            type: SET_USER,
+            payload: {
+              id: res.data._id,
+              tournaments: res.data.tournaments,
+              decks: res.data.decks
+            }
+          })
+        }
+      })
+  }
   
-  API.getUserId(user.email)
-    .then(res => {
-      if (state.userId !== res.data._id) {
-        dispatch({
-          type: SET_USER,
-          payload: {
-            id: res.data._id,
-            tournaments: res.data.tournaments,
-            decks: res.data.decks
-          }
-        })
-      }
-    })
 
   return (
       <div>
