@@ -7,49 +7,47 @@ mongoose.connect(
   process.env.MONGODB_URI || 'mongodb://localhost/TournamentTracker',
   {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   }
 );
 
 const userSeed = [
   {
-    email: "matthewronaldjohnson@gmail.com",
-    decks: [1, 2, 3],
-    tournaments: [0],
+
+    email: 'matthewronaldjohnson@gmail.com',
+    decks: [],
+    tournaments: [],
   },
   {
-    email: "james@test.com",
-    decks: [4, 5],
-    tournaments: [2],
+    email: 'jamesfswebdev@gmail.com',
+    decks: [],
+    tournaments: [],
   },
   {
-    email: "manny@test.com",
-    decks: [6],
-    tournaments: [1],
+    email: 'manny@test.com',
+    decks: [],
+    tournaments: [],
   },
 ];
 
 const tournamentSeed = [
   {
-    _id: 1,
-    deck: 1,
-    tournamentData: [0],
+
+    tournamentName: 'MTG West Prelims',
+    tournamentData: [],
   },
   {
-    _id: 0,
-    deck: 4,
-    tournamentData: [1],
+    tournamentName: 'MTG East Finals',
+    tournamentData: [],
   },
   {
-    _id: 2,
-    deck: 3,
-    tournamentData: [2],
+    tournamentName: 'MTG NA Regionals',
+    tournamentData: [],
   },
 ];
 
 const deckSeed = [
   {
-    _id: 1,
     deckName: 'Rogues',
     whiteMana: false,
     blueMana: true,
@@ -58,7 +56,6 @@ const deckSeed = [
     greenMana: false,
   },
   {
-    _id: 2,
     deckName: 'Izzet',
     whiteMana: false,
     blueMana: true,
@@ -67,7 +64,6 @@ const deckSeed = [
     greenMana: false,
   },
   {
-    _id: 3,
     deckName: 'Rakdos',
     whiteMana: false,
     blueMana: false,
@@ -76,7 +72,6 @@ const deckSeed = [
     greenMana: false,
   },
   {
-    _id: 4,
     deckName: 'Jund',
     whiteMana: false,
     blueMana: false,
@@ -85,7 +80,6 @@ const deckSeed = [
     greenMana: true,
   },
   {
-    _id: 5,
     deckName: 'Tron',
     whiteMana: false,
     blueMana: false,
@@ -94,7 +88,6 @@ const deckSeed = [
     greenMana: true,
   },
   {
-    _id: 6,
     deckName: 'UW Control',
     whiteMana: true,
     blueMana: true,
@@ -106,8 +99,6 @@ const deckSeed = [
 
 const matchSeed = [
   {
-    _id: 1,
-    opponentDeck: 5,
     wins: 2,
     losses: 1,
     result: true,
@@ -115,8 +106,6 @@ const matchSeed = [
     opponentsName: 'James',
   },
   {
-    _id: 0,
-    opponentDeck: 2,
     wins: 1,
     losses: 2,
     result: false,
@@ -124,8 +113,6 @@ const matchSeed = [
     opponentsName: 'Matthew',
   },
   {
-    _id: 2,
-    opponentDeck: 6,
     wins: 3,
     losses: 0,
     result: true,
@@ -134,48 +121,71 @@ const matchSeed = [
   },
 ];
 
-db.User.deleteMany({})
-  .then(() => db.User.collection.insertMany(userSeed))
-  .then((data) => {
-    console.log(data.result.n + ' records inserted!');
-    process.exit(0);
-  })
-  .catch((err) => {
-    console.error(err);
-    process.exit(1);
-  });
+let deckIds = [];
+let matchIds = [];
+let tournamnetIds = [];
 
-db.Deck.deleteMany({})
-  .then(() =>
-    db.Deck.collection.insertMany(deckSeed)
-  )
-  .then((data) => {
-    console.log(data.result.n + ' records inserted!');
-    process.exit(0);
-  })
-  .catch((err) => {
-    console.error(err);
-    process.exit(1);
-  });
+const seed = async function () {
+  await db.Deck.deleteMany({})
+    .then(() =>
+      db.Deck.collection.insertMany(deckSeed)
+    )
+    .then((data) => {
+      console.log("==========Decks")
+      console.log(data.insertedIds);
+      deckIds = data.insertedIds;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 
-db.Tournament.deleteMany({})
-  .then(() => db.Tournament.collection.insertMany(tournamentSeed))
-  .then((data) => {
-    console.log(data.result.n + ' records inserted!');
-    process.exit(0);
-  })
-  .catch((err) => {
-    console.error(err);
-    process.exit(1);
-  });
+  for (let i = 0; i < matchSeed.length; i++) {
+    matchSeed[i].opponentDeck = deckIds[0];
+  }
 
-db.MatchData.deleteMany({})
-  .then(() => db.MatchData.collection.insertMany(matchSeed))
-  .then((data) => {
-    console.log(data.result.n + ' records inserted!');
-    process.exit(0);
-  })
-  .catch((err) => {
-    console.error(err);
-    process.exit(1);
-  });
+  await db.MatchData.deleteMany({})
+    .then(() => db.MatchData.collection.insertMany(matchSeed))
+    .then((data) => {
+      console.log("=============Matches")
+      console.log(data.insertedIds);
+      matchIds = data.insertedIds;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+
+  for (let i = 0; i < tournamentSeed.length; i++) {
+    tournamentSeed[i].deck = deckIds[0];
+    tournamentSeed[i].tournamentData.push(matchIds[0]);
+  }
+
+  await db.Tournament.deleteMany({})
+    .then(() => db.Tournament.collection.insertMany(tournamentSeed))
+    .then((data) => {
+      console.log("==================Tournamnets")
+      console.log(data.insertedIds);
+      tournamnetIds = data.insertedIds;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+
+  for (let i = 0; i < userSeed.length; i++){
+    userSeed[i].decks.push(deckIds[0]);
+    userSeed[i].tournaments.push(tournamnetIds[0])
+  }
+
+    await db.User.deleteMany({})
+      .then(() => db.User.collection.insertMany(userSeed))
+      .then((data) => {
+        console.log("===========Users")
+        console.log(data.insertedIds);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+
+    process.exit(0)
+}
+
+seed();

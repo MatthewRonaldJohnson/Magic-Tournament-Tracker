@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const TournamentSchema = new Schema({
+  tournamentName: String,
   deck: {
     type: Schema.Types.ObjectId,
     ref: 'Deck',
