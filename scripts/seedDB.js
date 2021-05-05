@@ -18,7 +18,7 @@ const userSeed = [
     tournaments: [0],
   },
   {
-    email: "james@test.com",
+    email: "jamesfswebdev@gmail.com",
     decks: [4, 5],
     tournaments: [2],
   },
@@ -32,15 +32,18 @@ const userSeed = [
 const tournamentSeed = [
   {
     _id: 1,
+    tournamentName: "MTG West Prelims",
     deck: 1,
     tournamentData: [0],
   },
   {
+    tournamentName: "MTG East Finals",
     _id: 0,
     deck: 4,
     tournamentData: [1],
   },
   {
+    tournamentName: "MTG NA Regionals",
     _id: 2,
     deck: 3,
     tournamentData: [2],
