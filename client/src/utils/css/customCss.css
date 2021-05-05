@@ -16,6 +16,7 @@ body {
 .cardData {
     background-color: var(--primary);
     font-weight: bold;
+    border-radius: 2%;
 }
 
 .cardImage-container {
