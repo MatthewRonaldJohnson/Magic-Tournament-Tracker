@@ -7,36 +7,41 @@ mongoose.connect(
   process.env.MONGODB_URI || 'mongodb://localhost/TournamentTracker',
   {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   }
 );
 
 const userSeed = [
   {
-    email: "matthewronaldjohnson@gmail.com",
-    decks: [],
-    tournaments: [],
+
+    email: 'matthewronaldjohnson@gmail.com',
+    decks: [1, 2, 3],
+    tournaments: [0],
   },
   {
-    email: "james@test.com",
-    decks: [],
-    tournaments: [],
+    email: 'jamesfswebdev@gmail.com',
+    decks: [4, 5],
+    tournaments: [2],
   },
   {
-    email: "manny@test.com",
-    decks: [],
-    tournaments: [],
+    email: 'manny@test.com',
+    decks: [6],
+    tournaments: [1],
   },
 ];
 
 const tournamentSeed = [
   {
+
+    tournamentName: 'MTG West Prelims',
     tournamentData: [],
   },
   {
+    tournamentName: 'MTG East Finals',
     tournamentData: [],
   },
   {
+    tournamentName: 'MTG NA Regionals'
     tournamentData: [],
   },
 ];
