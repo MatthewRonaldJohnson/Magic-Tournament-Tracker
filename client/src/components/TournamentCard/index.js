@@ -3,8 +3,20 @@ import React, { Component } from 'react';
 class TournamentCard extends Component {
   state = {
     freePlayClicked: false,
+    userInput: '',
   };
 
+  freePlayHandler = () => {
+    if (!this.state.freePlayClicked) {
+      this.setState({ freePlayClicked: true, userInput: "FreePlay" });
+    } else {
+      this.setState({ freePlayClicked: false, userInput: ""})
+    }
+  };
+
+  handleInputChange = (e) => {
+    this.setState({...this.state, userInput: e.target.value})
+  }
   render() {
     return (
       <>
@@ -19,6 +31,9 @@ class TournamentCard extends Component {
               id="tournamentName"
               list="prevTournaments"
               className="form-control"
+              value={this.state.userInput}
+              onChange={this.handleInputChange}
+              readOnly={this.state.freePlayClicked}
             />
             <datalist id="prevTournaments">
               {this.props.tournaments.map((data) => {
@@ -27,8 +42,7 @@ class TournamentCard extends Component {
             </datalist>
             <div className="input-group-append">
               <div className="input-group-text">
-                {/* I need to have an onchange so that when I'm toggled on I change the state of the app to disable the tournament input as well as when a submit is sent to change the tournament selected to be "Freeplay" */}
-                <input id="freePlayCheck" type="checkbox" />
+                <input id="freePlayCheck" onClick={this.freePlayHandler} type="checkbox" />
                 <label
                   className="form-check-label ml-1"
                   htmlFor="freePlayCheck"
