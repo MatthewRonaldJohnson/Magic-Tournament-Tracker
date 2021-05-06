@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="../client/public/favicon.ico">
+    <title>Magic Tournament Tracker</title>
+    <link rel="stylesheet" href="../client/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./themedBS4.css">
+    <link rel="stylesheet" href="./loginPage.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+
+
+<body>
+       <div class="navbar-brand" href="#">
+            <img src="../client/public/favicon.ico" width="30" height="30" class="d-inline-block align-top" alt=""
+                loading="lazy">
+                <p>Super Cool Tournament Tracker!</p>
+       </div>
+    <div id="container-login">
+        <div id="title">
+            <i class="material-icons lock">lock</i> Login
+        </div>
+
+        <form>
+            <div class="input">
+                <div class="input-addon">
+                    <i class="material-icons">face</i>
+                </div>
+                <input id="username" placeholder="Username" type="text" required class="validate" autocomplete="off">
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="input">
+                <div class="input-addon">
+                    <i class="material-icons">vpn_key</i>
+                </div>
+                <input id="password" placeholder="Password" type="password" required class="validate" autocomplete="off">
+            </div>
+
+            <div class="remember-me">
+                <input type="checkbox">
+                <span style="color: #DDD">Remember Me</span>
+            </div>
+
+            <input type="submit" value="Log In" />
+        </form>
+
+        <!-- <div class="forgot-password">
+            <a href="#">Forgot your password?</a> -->
+        </div>
+        <!-- <div class="privacy">
+            <a href="#">Privacy Policy</a>
+        </div> -->
+ 
+
+    </div>
+<div id="container-register">
+    <div id="title">
+        <i class="material-icons lock">lock</i> Register
+    </div>
+
+    <form>
+        <div class="input">
+            <div class="input-addon">
+                <i class="material-icons">email</i>
+            </div>
+            <input id="email" placeholder="Email" type="email" required class="validate" autocomplete="off">
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="input">
+            <div class="input-addon">
+                <i class="material-icons">face</i>
+            </div>
+            <input id="username" placeholder="Username" type="text" required class="validate" autocomplete="off">
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="input">
+            <div class="input-addon">
+                <i class="material-icons">vpn_key</i>
+            </div>
+            <input id="password" placeholder="Password" type="password" required class="validate" autocomplete="off">
+        </div>
+
+        <div class="remember-me">
+            <!-- <input type="checkbox">
+            <span style="color: #DDD">I accept Terms of Service</span>
+        </div> -->
+
+        <input type="submit" value="Register" />
+     </div>
+</body>
+</html>
