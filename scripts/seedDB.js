@@ -173,6 +173,7 @@ const seed = async function () {
   for (let i = 0; i < userSeed.length; i++){
     userSeed[i].decks.push(deckIds[0]);
     userSeed[i].tournaments.push(tournamnetIds[0])
+    userSeed[i].tournaments.push(tournamnetIds[1])
   }
 
     await db.User.deleteMany({})
