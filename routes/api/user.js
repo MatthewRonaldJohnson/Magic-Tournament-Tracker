@@ -4,7 +4,6 @@ const { User, Tournament, MatchData } = require("../../models")
 // /api/user/:email
 router.get('/:email', async (req, res) => {
     let currentUser = await User.findOne({ email: req.params.email })
-        .findOne({ email: "matthewronaldjohnson@gmail.com" })
         .populate("decks")
         .populate("tournaments")
         .populate({
