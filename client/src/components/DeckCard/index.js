@@ -22,7 +22,8 @@ class DeckCard extends Component {
       return decks.deckName.toLowerCase().includes(deckParam);
     });
 
-    if (deckName === '') {
+    if (deckName === '' || checked.length === 0) {
+      console.log('hit')
       this.setState({
         ...this.state,
         whiteMana: false,
@@ -31,7 +32,7 @@ class DeckCard extends Component {
         greenMana: false,
         blackMana: false,
       });
-    } else {
+    } else if (checked.length === 1){
       this.setState({
         ...this.state,
         whiteMana: checked[0].whiteMana,
