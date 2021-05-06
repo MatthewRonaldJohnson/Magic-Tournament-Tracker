@@ -20,7 +20,7 @@ class TournamentCard extends Component {
   render() {
     return (
       <>
-        <div className="row my-1">
+        <div className="row my-3">
           <div className="input-group col-12">
             <div className="input-group-prepend">
               <label className="input-group-text" htmlFor="tournamentName">
