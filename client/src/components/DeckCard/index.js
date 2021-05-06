@@ -60,7 +60,7 @@ class DeckCard extends Component {
             {/* Need to pull the actual decks instead of just the objectID */}
             <datalist id="prevDecks">
               {this.props.decks.map((data) => {
-                return <option value={data.deckName} key={data.deckName} />;
+                return <option value={data.deckName} key={data._id} />;
               })}
             </datalist>
             <div className="manaCheckBox white form-check form-check-inline">
