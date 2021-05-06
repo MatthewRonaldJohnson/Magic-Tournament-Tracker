@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const DeckSchema = new Schema({
-  deckName: { type: String, required: true },
-  whiteMana: { type: Boolean, required: true},
-  blueMana: { type: Boolean, required: true},
-  blackMana: { type: Boolean, required: true},
-  redMana: { type: Boolean, required: true}, 
-  greenMana: { type: Boolean, required: true}, 
+  deckName: { type: String, required: true, unique: true },
+  whiteMana: { type: Boolean, required: true },
+  blueMana: { type: Boolean, required: true },
+  blackMana: { type: Boolean, required: true },
+  redMana: { type: Boolean, required: true },
+  greenMana: { type: Boolean, required: true },
 });
 
 const Deck = mongoose.model('Deck', DeckSchema);
