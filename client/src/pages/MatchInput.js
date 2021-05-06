@@ -1,7 +1,8 @@
 import React from 'react';
-import TournamentCard from '../components/TournamentCard';
-import DeckCard from '../components/DeckCard'
 import { useStoreContext } from '../utils/GlobalState';
+import TournamentCard from '../components/TournamentCard';
+import DeckCard from '../components/DeckCard';
+import OpponentDeckCard from '../components/OpponentDeckCard';
 
 export default function MatchInput() {
   const [state, dispatch] = useStoreContext();
@@ -9,7 +10,9 @@ export default function MatchInput() {
     <div>
       <div className="container mt-2">
         <TournamentCard tournaments={state.tournaments} />
-        <DeckCard decks={[
+        <div className="row">
+          <DeckCard
+            decks={[
               {
                 _id: 1,
                 deckName: 'MonoGreen',
@@ -37,7 +40,10 @@ export default function MatchInput() {
                 greenMana: false,
                 blackMana: true,
               },
-            ]} />
+            ]}
+          />
+          <OpponentDeckCard />
+        </div>
       </div>
     </div>
   );
