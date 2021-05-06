@@ -74,3 +74,10 @@ body {
 .green input[type="checkbox"]:checked + label::before {
     background-color: #00733E;
 }
+
+.chartContainer {
+    background-color:  #F9FAF4;
+    padding: 10px;
+    border-radius: 2%;
+    
+}
