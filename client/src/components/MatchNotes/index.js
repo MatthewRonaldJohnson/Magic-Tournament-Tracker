@@ -15,6 +15,12 @@ class MatchNotes extends Component {
                   placeholder="Wins"
                   min="0"
                   max="2"
+                  onChange={(e) => {
+                    this.props.setMatchDataState({
+                      ...this.props.matchDataState,
+                      wins: parseInt(e.target.value),
+                    });
+                  }}
                 />
               </div>
               <div className="col-6">
@@ -25,6 +31,12 @@ class MatchNotes extends Component {
                   placeholder="Losses"
                   min="0"
                   max="2"
+                  onChange={(e) => {
+                    this.props.setMatchDataState({
+                      ...this.props.matchDataState,
+                      losses: parseInt(e.target.value),
+                    });
+                  }}
                 />
               </div>
               <div className="col-12">
@@ -33,11 +45,27 @@ class MatchNotes extends Component {
                   type="text"
                   className="form-control"
                   placeholder="Opponent Name"
+                  onChange={(e) => {
+                    this.props.setMatchDataState({
+                      ...this.props.matchDataState,
+                      oppName: e.target.value,
+                    });
+                  }}
                 />
               </div>
               <div className="col-12">
                 <label>Notes</label>
-                <textarea className="form-control" name="" id=""></textarea>
+                <textarea
+                  className="form-control"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    this.props.setMatchDataState({
+                      ...this.props.matchDataState,
+                      matchNotes: e.target.value,
+                    });
+                  }}
+                ></textarea>
               </div>
             </div>
           </div>

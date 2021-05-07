@@ -1,30 +1,23 @@
 import React, { Component } from 'react';
 
 class DeckCard extends Component {
-  state = {
-    decks: [],
-    deckName: '',
-    whiteMana: false,
-    blueMana: false,
-    blackMana: false,
-    redMana: false,
-    greenMana: false,
-  };
-
   componentDidMount = () => {
-    this.setState({ ...this.state, decks: this.props.decks });
+    this.props.setUserDeckState({
+      ...this.props.userDeckState,
+      decks: this.props.decks,
+    });
   };
 
   handleDeckNameChange = async (e) => {
     const deckName = e.target.value;
     const deckParam = deckName.toLocaleLowerCase();
-    const checked = await this.state.decks.filter((decks) => {
-      return decks.deckName.toLowerCase().includes(deckParam);
+    const checked = await this.props.decks.filter((decks) => {
+      return decks.deckName.toLocaleLowerCase().includes(deckParam);
     });
 
     if (deckName === '' || checked.length === 0) {
-      this.setState({
-        ...this.state,
+      this.props.setUserDeckState({
+        ...this.props.userDeckState,
         whiteMana: false,
         blueMana: false,
         redMana: false,
@@ -32,8 +25,8 @@ class DeckCard extends Component {
         blackMana: false,
       });
     } else if (checked.length === 1) {
-      this.setState({
-        ...this.state,
+      this.props.setUserDeckState({
+        ...this.props.userDeckState,
         whiteMana: checked[0].whiteMana,
         blueMana: checked[0].blueMana,
         redMana: checked[0].redMana,
@@ -49,7 +42,7 @@ class DeckCard extends Component {
       <>
         <div id="user" className="deckInput col-12 col-lg-6 pt-2">
           <div className="form-group">
-            <label htmlFor="userDeckname">Your Deck Name: </label>
+            <label htmlFor="userDeckName">Your Deck Name: </label>
             <input
               id="userDeckName"
               list="prevDecks"
@@ -68,12 +61,12 @@ class DeckCard extends Component {
                 type="checkbox"
                 id="uWhite"
                 onChange={() =>
-                  this.setState({
-                    ...this.state,
-                    whiteMana: !this.state.whiteMana,
+                  this.props.setUserDeckState({
+                    ...this.props.userDeckState,
+                    whiteMana: !this.props.userDeckState.whiteMana,
                   })
                 }
-                checked={this.state.whiteMana}
+                checked={this.props.userDeckState.whiteMana}
               />
               <label className="form-check-label" htmlFor="uWhite">
                 White
@@ -85,12 +78,12 @@ class DeckCard extends Component {
                 type="checkbox"
                 id="uBlue"
                 onChange={() =>
-                  this.setState({
-                    ...this.state,
-                    blueMana: !this.state.blueMana,
+                  this.props.setUserDeckState({
+                    ...this.props.userDeckState,
+                    blueMana: !this.props.userDeckState.blueMana,
                   })
                 }
-                checked={this.state.blueMana}
+                checked={this.props.userDeckState.blueMana}
               />
               <label className="form-check-label" htmlFor="uBlue">
                 Blue
@@ -102,12 +95,12 @@ class DeckCard extends Component {
                 type="checkbox"
                 id="uBlack"
                 onChange={() =>
-                  this.setState({
-                    ...this.state,
-                    blackMana: !this.state.blackMana,
+                  this.props.setUserDeckState({
+                    ...this.props.userDeckState,
+                    blackMana: !this.props.userDeckState.blackMana,
                   })
                 }
-                checked={this.state.blackMana}
+                checked={this.props.userDeckState.blackMana}
               />
               <label className="form-check-label" htmlFor="uBlack">
                 Black
@@ -119,9 +112,12 @@ class DeckCard extends Component {
                 type="checkbox"
                 id="uRed"
                 onChange={() =>
-                  this.setState({ ...this.state, redMana: !this.state.redMana })
+                  this.props.setUserDeckState({
+                    ...this.props.userDeckState,
+                    redMana: !this.props.userDeckState.redMana,
+                  })
                 }
-                checked={this.state.redMana}
+                checked={this.props.userDeckState.redMana}
               />
               <label className="form-check-label" htmlFor="uRed">
                 Red
@@ -133,12 +129,12 @@ class DeckCard extends Component {
                 type="checkbox"
                 id="uGreen"
                 onChange={() =>
-                  this.setState({
-                    ...this.state,
-                    greenMana: !this.state.greenMana,
+                  this.props.setUserDeckState({
+                    ...this.props.userDeckState,
+                    greenMana: !this.props.userDeckState.greenMana,
                   })
                 }
-                checked={this.state.greenMana}
+                checked={this.props.userDeckState.greenMana}
               />
               <label className="form-check-label" htmlFor="uGreen">
                 Green
