@@ -4,8 +4,8 @@ class SubmitBtn extends Component {
   render() {
     return (
       <>
-        <div class="row my-1">
-          <button type="button" class="btn btn-primary col-12 my-3 p-4">
+        <div className="row my-1">
+          <button type="button" className="btn btn-primary col-12 my-3 p-4">
             Submit
           </button>
         </div>
