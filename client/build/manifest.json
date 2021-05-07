@@ -1,0 +1,10 @@
+{
+  "short_name": "MTT",
+  "name": "Magic Tournament Tracker",
+  "icons": [
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
