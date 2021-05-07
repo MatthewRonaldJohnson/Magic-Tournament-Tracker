@@ -13,7 +13,7 @@ class TournamentCard extends Component {
   };
 
   handleInputChange = (e) => {
-    this.setTournamentState({
+    this.props.setTournamentState({
       ...this.props.tournamentState,
       userInput: e.target.value,
     });

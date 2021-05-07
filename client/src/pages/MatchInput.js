@@ -22,7 +22,14 @@ export default function MatchInput() {
     redMana: false,
     greenMana: false,
   });
-  const [oppDeckState, setOppDeckState] = useState();
+  const [oppDeckState, setOppDeckState] = useState({
+    deckName: '',
+    whiteMana: false,
+    blueMana: false,
+    blackMana: false,
+    redMana: false,
+    greenMana: false,
+  });
   const [matchDataState, setMatchDataState] = useState();
 
   function handleFormSubmit(e) {
@@ -71,7 +78,10 @@ export default function MatchInput() {
             userDeckState={userDeckState}
             setUserDeckState={setUserDeckState}
           />
-          <OpponentDeckCard />
+          <OpponentDeckCard
+            oppDeckState={oppDeckState}
+            setOppDeckState={setOppDeckState}
+          />
         </div>
         <MatchNotes />
         <SubmitBtn onClick={handleFormSubmit} />
