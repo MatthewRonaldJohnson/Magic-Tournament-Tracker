@@ -3,6 +3,7 @@ const { User, Tournament, MatchData, Deck } = require("../../models");
 
 // /api/input/
 router.post("/", async (req, res) => {
+    console.log("req body ===============", req.body)
     const { tournament, userDeck, oppDeck, matchData, userId } = req.body
     let userDeckId = await Deck.findOne({ deckName: userDeck.name })
     if (!userDeckId) {
