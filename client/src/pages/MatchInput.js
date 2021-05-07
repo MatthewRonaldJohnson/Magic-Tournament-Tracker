@@ -13,7 +13,15 @@ export default function MatchInput() {
     freePlayClicked: false,
     userInput: '',
   });
-  const [userDeckState, setUserDeckState] = useState();
+  const [userDeckState, setUserDeckState] = useState({
+    decks: [],
+    deckName: '',
+    whiteMana: false,
+    blueMana: false,
+    blackMana: false,
+    redMana: false,
+    greenMana: false,
+  });
   const [oppDeckState, setOppDeckState] = useState();
   const [matchDataState, setMatchDataState] = useState();
 
@@ -58,7 +66,11 @@ export default function MatchInput() {
           tournamentState={tournamentState}
         />
         <div className="row">
-          <DeckCard decks={state.decks} />
+          <DeckCard
+            decks={state.decks}
+            userDeckState={userDeckState}
+            setUserDeckState={setUserDeckState}
+          />
           <OpponentDeckCard />
         </div>
         <MatchNotes />
