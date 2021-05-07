@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
 
 class TournamentCard extends Component {
-  state = {
-    freePlayClicked: false,
-    userInput: '',
-  };
-
   freePlayHandler = () => {
-    if (!this.state.freePlayClicked) {
-      this.setState({ freePlayClicked: true, userInput: "FreePlay" });
+    if (!this.props.tournamentState.freePlayClicked) {
+      this.props.setTournamentState({
+        freePlayClicked: true,
+        userInput: 'FreePlay',
+      });
     } else {
-      this.setState({ freePlayClicked: false, userInput: ""})
+      this.props.setTournamentState({ freePlayClicked: false, userInput: '' });
     }
   };
 
   handleInputChange = (e) => {
-    this.setState({...this.state, userInput: e.target.value})
-  }
+    this.setTournamentState({
+      ...this.props.tournamentState,
+      userInput: e.target.value,
+    });
+  };
   render() {
     return (
       <>
@@ -31,9 +32,9 @@ class TournamentCard extends Component {
               id="tournamentName"
               list="prevTournaments"
               className="form-control"
-              value={this.state.userInput}
+              value={this.props.tournamentState.userInput}
               onChange={this.handleInputChange}
-              readOnly={this.state.freePlayClicked}
+              readOnly={this.props.tournamentState.freePlayClicked}
             />
             <datalist id="prevTournaments">
               {this.props.tournaments.map((data) => {
@@ -42,7 +43,11 @@ class TournamentCard extends Component {
             </datalist>
             <div className="input-group-append">
               <div className="input-group-text">
-                <input id="freePlayCheck" onClick={this.freePlayHandler} type="checkbox" />
+                <input
+                  id="freePlayCheck"
+                  onClick={this.freePlayHandler}
+                  type="checkbox"
+                />
                 <label
                   className="form-check-label ml-1"
                   htmlFor="freePlayCheck"
