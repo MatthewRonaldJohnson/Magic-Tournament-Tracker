@@ -48,7 +48,9 @@ class DeckCard extends Component {
   render() {
     return (
       <>
+
         <div id="user" className="deckInput col-12 col-lg-6 py-2">
+
           <div className="form-group">
             <label htmlFor="userDeckname">Your Deck Name: </label>
             <input
