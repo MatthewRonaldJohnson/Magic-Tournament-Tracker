@@ -4,6 +4,7 @@ import TournamentCard from '../components/TournamentCard';
 import DeckCard from '../components/DeckCard';
 import OpponentDeckCard from '../components/OpponentDeckCard';
 import MatchNotes from '../components/MatchNotes';
+import SubmitBtn from '../components/SubmitBtn';
 
 export default function MatchInput() {
   const [state, dispatch] = useStoreContext();
@@ -35,6 +36,7 @@ export default function MatchInput() {
           <OpponentDeckCard />
         </div>
         <MatchNotes />
+        <SubmitBtn />
       </div>
     </div>
   );
