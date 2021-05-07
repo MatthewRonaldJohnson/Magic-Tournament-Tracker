@@ -34,30 +34,34 @@ export default function MatchInput() {
 
   function handleFormSubmit(e) {
     e.preventDefault();
-    if (userDeckState.deckName && tournamentState && oppDeckState.deckName) {
+    if (
+      userDeckState.deckName &&
+      tournamentState.userInput &&
+      oppDeckState.deckName
+    ) {
       API.submitMatch({
         userID: state.userId,
         tournament: tournamentState.userInput,
         userDeck: {
           name: userDeckState.deckName,
           whiteMana: userDeckState.whiteMana,
-          blueMana: userDeckState.whiteMana,
-          blackMana: userDeckState.whiteMana,
-          redMana: userDeckState.whiteMana,
-          greenMana: userDeckState.whiteMana,
+          blueMana: userDeckState.blueMana,
+          blackMana: userDeckState.blackMana,
+          redMana: userDeckState.redMana,
+          greenMana: userDeckState.greenMana,
         },
         oppDeck: {
           name: oppDeckState.deckName,
           whiteMana: oppDeckState.whiteMana,
-          blueMana: oppDeckState.whiteMana,
-          blackMana: oppDeckState.whiteMana,
-          redMana: oppDeckState.whiteMana,
-          greenMana: oppDeckState.whiteMana,
+          blueMana: oppDeckState.blueMana,
+          blackMana: oppDeckState.blackMana,
+          redMana: oppDeckState.redMana,
+          greenMana: oppDeckState.greenMana,
         },
         matchData: {
           wins: matchDataState.wins,
           losses: matchDataState.losses,
-          oppName: matchDataState.opponentName,
+          oppName: matchDataState.oppName,
           notes: matchDataState.matchNotes,
         },
       }).catch((err) => console.log(err));
@@ -83,7 +87,10 @@ export default function MatchInput() {
             setOppDeckState={setOppDeckState}
           />
         </div>
-        <MatchNotes />
+        <MatchNotes
+          matchDataState={matchDataState}
+          setMatchDataState={setMatchDataState}
+        />
         <SubmitBtn onClick={handleFormSubmit} />
       </div>
     </div>
