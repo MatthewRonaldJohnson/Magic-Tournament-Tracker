@@ -9,6 +9,7 @@ import dataMaker from '../utils/CreateBarChartData';
 export default function Analytics() {
   const [state, dispatch] = useStoreContext();
   const [chartData, setChartData] = useState(null);
+  const [renderSwitch, setRenderSwtich] = useState(true);
   const firstTournament = state.tournaments[0];
   const [displayedTournament, setDisplayedTournament] = useState({
     id: '',
@@ -21,6 +22,7 @@ export default function Analytics() {
     setChartData(
       dataMaker.createBarChartData(displayedTournament.tournamentData)
     );
+    setRenderSwtich(!renderSwitch)
   }, [displayedTournament.name]);
 
   useEffect(() => {
@@ -31,7 +33,9 @@ export default function Analytics() {
         deckUsed: firstTournament.deck.deckName,
         tournamentData: firstTournament.tournamentData,
       });
+      setRenderSwtich(!renderSwitch);
     }
+    
   }, [firstTournament]);
 
   const handleSelectChange = async (e) => {
@@ -44,6 +48,7 @@ export default function Analytics() {
       deckUsed: tournament.deck.deckName,
       tournamentData: tournament.tournamentData,
     });
+    setRenderSwtich(!renderSwitch);
   };
 
   return (
@@ -76,7 +81,7 @@ export default function Analytics() {
       </div>
       <div className="row chartContainer">
         <h1 className="col-12 text-center">{displayedTournament.name}</h1>
-        <BarChart data={chartData} label={displayedTournament.name} />
+        <BarChart data={chartData} renderSwitch={renderSwitch} />
         <h2 className="col-12 text-center">
           Playing: {displayedTournament.deckUsed}
         </h2>
