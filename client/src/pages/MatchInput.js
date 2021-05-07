@@ -1,42 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useStoreContext } from '../utils/GlobalState';
 import TournamentCard from '../components/TournamentCard';
 import DeckCard from '../components/DeckCard';
 import OpponentDeckCard from '../components/OpponentDeckCard';
 import MatchNotes from '../components/MatchNotes';
 import SubmitBtn from '../components/SubmitBtn';
+import API from '../utils/API';
 
 export default function MatchInput() {
   const [state, dispatch] = useStoreContext();
-  const decks= state.decks
-  const decksFD = [
-    {
-      _id: "6092fc902726131f443f9a1ea",
-      deckName: 'MonoGreen',
-      whiteMana: false,
-      blueMana: false,
-      redMana: false,
-      greenMana: true,
-      blackMana: false,
-    },
-  ]
+  const [tournamentState, setTournamentState] = useState({
+    freePlayClicked: false,
+    userInput: '',
+  });
+  const [userDeckState, setUserDeckState] = useState();
+  const [oppDeckState, setOppDeckState] = useState();
+  const [matchDataState, setMatchDataState] = useState();
 
-// Exact same structure, but if you pass in the FakeData (decksFD) on line 33 instead of decks it works.
-  console.log("Real Data", decks)
-  console.log("Fake Data", decksFD)
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    if (userDeckState.deckName && tournamentState && oppDeckState.deckName) {
+      API.submitMatch({
+        userID: state.userId,
+        tournament: tournamentState.userInput,
+        userDeck: {
+          name: userDeckState.deckName,
+          whiteMana: userDeckState.whiteMana,
+          blueMana: userDeckState.whiteMana,
+          blackMana: userDeckState.whiteMana,
+          redMana: userDeckState.whiteMana,
+          greenMana: userDeckState.whiteMana,
+        },
+        oppDeck: {
+          name: oppDeckState.deckName,
+          whiteMana: oppDeckState.whiteMana,
+          blueMana: oppDeckState.whiteMana,
+          blackMana: oppDeckState.whiteMana,
+          redMana: oppDeckState.whiteMana,
+          greenMana: oppDeckState.whiteMana,
+        },
+        matchData: {
+          wins: matchDataState.wins,
+          losses: matchDataState.losses,
+          oppName: matchDataState.opponentName,
+          notes: matchDataState.matchNotes,
+        },
+      }).catch((err) => console.log(err));
+    }
+  }
 
   return (
     <div>
       <div className="container mt-2">
-        <TournamentCard tournaments={state.tournaments} />
+        <TournamentCard
+          tournaments={state.tournaments}
+          setTournamentState={setTournamentState}
+          tournamentState={tournamentState}
+        />
         <div className="row">
-          <DeckCard
-            decks={decks}
-          />
+          <DeckCard decks={state.decks} />
           <OpponentDeckCard />
         </div>
         <MatchNotes />
-        <SubmitBtn />
+        <SubmitBtn onClick={handleFormSubmit} />
       </div>
     </div>
   );
