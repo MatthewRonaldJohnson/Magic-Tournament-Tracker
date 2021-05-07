@@ -17,8 +17,8 @@ class MatchNotes extends Component {
                   max="2"
                   onChange={(e) => {
                     this.props.setMatchDataState({
-                      ...this.props.setMatchDataState,
-                      wins: e.target.value,
+                      ...this.props.matchDataState,
+                      wins: parseInt(e.target.value),
                     });
                   }}
                 />
@@ -33,8 +33,8 @@ class MatchNotes extends Component {
                   max="2"
                   onChange={(e) => {
                     this.props.setMatchDataState({
-                      ...this.props.setMatchDataState,
-                      losses: e.target.value,
+                      ...this.props.matchDataState,
+                      losses: parseInt(e.target.value),
                     });
                   }}
                 />
@@ -47,7 +47,7 @@ class MatchNotes extends Component {
                   placeholder="Opponent Name"
                   onChange={(e) => {
                     this.props.setMatchDataState({
-                      ...this.props.setMatchDataState,
+                      ...this.props.matchDataState,
                       oppName: e.target.value,
                     });
                   }}
@@ -61,7 +61,7 @@ class MatchNotes extends Component {
                   id=""
                   onChange={(e) => {
                     this.props.setMatchDataState({
-                      ...this.props.setMatchDataState,
+                      ...this.props.matchDataState,
                       matchNotes: e.target.value,
                     });
                   }}
