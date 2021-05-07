@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Tournament, MatchData } = require("../../models")
+const { User } = require("../../models")
 
 // /api/user/:email
 router.get('/:email', async (req, res) => {
