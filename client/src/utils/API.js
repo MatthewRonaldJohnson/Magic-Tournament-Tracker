@@ -9,8 +9,8 @@ export default {
     return axios.get(url)
   },
 
-  submitMatch: function(){
-    return axios.post("api/input/")
+  submitMatch: function(postData){
+    return axios.post("api/input/", postData)
   }
 };
 
