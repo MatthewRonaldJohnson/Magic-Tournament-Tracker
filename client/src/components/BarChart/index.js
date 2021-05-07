@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useMemo } from 'react';
+import React, { useRef, useEffect, useState} from 'react';
 import Chart from 'chart.js/auto';
 
 Chart.defaults.color = '#150B00';
@@ -46,6 +46,7 @@ function BarChart({ data, renderSwitch}) {
         options,
       })
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [renderSwitch]);
   return <canvas ref={chartRef} id="chart"></canvas>;
 }

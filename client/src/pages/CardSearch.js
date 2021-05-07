@@ -23,10 +23,9 @@ export default function CardSearch() {
     const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
     useEffect(() => {
-        if(searchTerm === "") return;
 
         if(debouncedSearchTerm){
-            API.getCardDataFromScryfall(searchTerm)
+            API.getCardDataFromScryfall(debouncedSearchTerm)
                 .then(res => {
                     setCardData({
                         name: res.data.name,
