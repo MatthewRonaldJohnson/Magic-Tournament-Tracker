@@ -85,7 +85,7 @@ body {
 .chartContainer {
   background-color: #f9faf4;
   padding: 10px;
-  border-radius: 2%;
+  border-radius: 15px;
 }
 
 #opponent {
