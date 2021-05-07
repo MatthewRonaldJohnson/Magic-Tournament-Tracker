@@ -23,7 +23,6 @@ class DeckCard extends Component {
     });
 
     if (deckName === '' || checked.length === 0) {
-      console.log('hit')
       this.setState({
         ...this.state,
         whiteMana: false,
@@ -32,7 +31,7 @@ class DeckCard extends Component {
         greenMana: false,
         blackMana: false,
       });
-    } else if (checked.length === 1){
+    } else if (checked.length === 1) {
       this.setState({
         ...this.state,
         whiteMana: checked[0].whiteMana,
@@ -48,9 +47,7 @@ class DeckCard extends Component {
   render() {
     return (
       <>
-
-        <div id="user" className="deckInput col-12 col-lg-6 py-2">
-
+        <div id="user" className="deckInput col-12 col-lg-6 pt-2">
           <div className="form-group">
             <label htmlFor="userDeckname">Your Deck Name: </label>
             <input
@@ -60,7 +57,6 @@ class DeckCard extends Component {
               type="text"
               onChange={this.handleDeckNameChange}
             />
-            {/* Need to pull the actual decks instead of just the objectID */}
             <datalist id="prevDecks">
               {this.props.decks.map((data) => {
                 return <option value={data.deckName} key={data._id} />;
@@ -72,7 +68,10 @@ class DeckCard extends Component {
                 type="checkbox"
                 id="uWhite"
                 onChange={() =>
-                  this.setState({ whiteMana: !this.state.whiteMana })
+                  this.setState({
+                    ...this.state,
+                    whiteMana: !this.state.whiteMana,
+                  })
                 }
                 checked={this.state.whiteMana}
               />
@@ -86,7 +85,10 @@ class DeckCard extends Component {
                 type="checkbox"
                 id="uBlue"
                 onChange={() =>
-                  this.setState({ blueMana: !this.state.blueMana })
+                  this.setState({
+                    ...this.state,
+                    blueMana: !this.state.blueMana,
+                  })
                 }
                 checked={this.state.blueMana}
               />
@@ -100,7 +102,10 @@ class DeckCard extends Component {
                 type="checkbox"
                 id="uBlack"
                 onChange={() =>
-                  this.setState({ blackMana: !this.state.blackMana })
+                  this.setState({
+                    ...this.state,
+                    blackMana: !this.state.blackMana,
+                  })
                 }
                 checked={this.state.blackMana}
               />
@@ -113,7 +118,9 @@ class DeckCard extends Component {
                 className="form-check-input"
                 type="checkbox"
                 id="uRed"
-                onChange={() => this.setState({ redMana: !this.state.redMana })}
+                onChange={() =>
+                  this.setState({ ...this.state, redMana: !this.state.redMana })
+                }
                 checked={this.state.redMana}
               />
               <label className="form-check-label" htmlFor="uRed">
@@ -126,7 +133,10 @@ class DeckCard extends Component {
                 type="checkbox"
                 id="uGreen"
                 onChange={() =>
-                  this.setState({ greenMana: !this.state.greenMana })
+                  this.setState({
+                    ...this.state,
+                    greenMana: !this.state.greenMana,
+                  })
                 }
                 checked={this.state.greenMana}
               />
