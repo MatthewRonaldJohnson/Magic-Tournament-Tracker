@@ -7,6 +7,10 @@ export default {
   getCardDataFromScryfall: function(card){
     const url = "https://api.scryfall.com/cards/named?fuzzy="+card;
     return axios.get(url)
+  },
+
+  submitMatch: function(data){
+    return axios.post("api/user/")
   }
 };
 
