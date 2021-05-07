@@ -32,7 +32,7 @@ const options = {
   },
 };
 
-function BarChart({ data, label }) {
+function BarChart({ data, renderSwitch}) {
   const [chart, setChart] = useState();
   const chartRef = useRef();
   useEffect(() => {
@@ -46,16 +46,9 @@ function BarChart({ data, label }) {
         options,
       })
     );
-  }, [label]);
+  }, [renderSwitch]);
   return <canvas ref={chartRef} id="chart"></canvas>;
 }
 
-// class BarChart extends React.Component {
-//     render({data}){
-//         return (
-//             <canvas id="chart"></canvas>
-//         )
-//     }
-// }
 
 export default BarChart;
