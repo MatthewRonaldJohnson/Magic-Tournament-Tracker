@@ -5,7 +5,7 @@ class SubmitBtn extends Component {
     return (
       <>
         <div className="row my-1">
-          <button type="button" className="btn btn-primary col-12 my-3 p-4">
+          <button type="button" {...this.props} className="btn btn-primary col-12 my-3 p-4">
             Submit
           </button>
         </div>
