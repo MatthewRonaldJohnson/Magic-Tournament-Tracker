@@ -14,7 +14,7 @@ mongoose.connect(
 const userSeed = [
   {
 
-    email: 'matthewronaldjohnson@gmail.com',
+    email: 'tbeauchamp@2u.com',
     decks: [],
     tournaments: [],
   },
