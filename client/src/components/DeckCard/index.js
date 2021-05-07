@@ -12,10 +12,7 @@ class DeckCard extends Component {
   };
 
   componentDidMount = () => {
-    // For whatever reason props disappears when I feed in the real data
-    console.log("on mount props", this.props.decks)
     this.setState({ ...this.state, decks: this.props.decks });
-    console.log("on mount state", this.state.decks)
   };
 
   handleDeckNameChange = async (e) => {
