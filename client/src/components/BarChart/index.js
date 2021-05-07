@@ -1,28 +1,7 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import Chart from "chart.js/auto";
 
 Chart.defaults.color = '#150B00';
-
-const data = {
-    labels: ['Sultai Ultimatum', 'Mono-Red', 'Rouges', 'Mono-White', 'Titan\'s Nest'],
-    datasets: [{
-      label: '# of Matches',
-      yAxisID: 'y',
-      backgroundColor: '#D3202A',
-      data: [4,3,3,2,1],
-    }, {
-      label: '# of Wins',
-      yAxisID: 'y',
-      backgroundColor: '#00733E',
-      data: [3,3,2,1,0],
-    }, {
-      label: 'Win %',
-      yAxisID: 'yPercentage',
-      backgroundColor: '#0E68AB',
-      data: [75,100,66,50,0],
-    }, ]
-}
-
 
 const options = {
     scales: {
@@ -54,18 +33,29 @@ const options = {
     },
 }
 
-function BarChart(props) {
+function BarChart({data, type}) {
+    
+    console.log('chart data', data)
     const chart = useRef();
     useEffect(() => {
-        new Chart(chart.current.getContext("2d"), {
-            type: 'bar',
-            data,
+        const myChart = new Chart(chart.current.getContext("2d"), {
+            type,
+            data: data,
             options
         });
-    }, [])
+        myChart.update()
+    }, [data])
     return (
-        <canvas ref={chart} id="chart"></canvas>
+            <canvas ref={chart} id="chart"></canvas>
     )
 }
+
+// class BarChart extends React.Component {
+//     render({data}){
+//         return (
+//             <canvas id="chart"></canvas>
+//         )
+//     }
+// }
 
 export default BarChart

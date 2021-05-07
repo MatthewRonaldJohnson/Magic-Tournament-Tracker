@@ -140,7 +140,7 @@ const seed = async function () {
     });
 
   for (let i = 0; i < matchSeed.length; i++) {
-    matchSeed[i].opponentDeck = deckIds[0];
+    matchSeed[i].opponentDeck = deckIds[i];
   }
 
   await db.MatchData.deleteMany({})
@@ -155,8 +155,10 @@ const seed = async function () {
     });
 
   for (let i = 0; i < tournamentSeed.length; i++) {
-    tournamentSeed[i].deck = deckIds[0];
-    tournamentSeed[i].tournamentData.push(matchIds[0]);
+    tournamentSeed[i].deck = deckIds[i];
+    tournamentSeed[i].tournamentData.push(matchIds[1]);
+    tournamentSeed[i].tournamentData.push(matchIds[1]);
+    tournamentSeed[i].tournamentData.push(matchIds[2]);
   }
 
   await db.Tournament.deleteMany({})
@@ -172,8 +174,11 @@ const seed = async function () {
 
   for (let i = 0; i < userSeed.length; i++){
     userSeed[i].decks.push(deckIds[0]);
+    userSeed[i].decks.push(deckIds[1]);
+    userSeed[i].decks.push(deckIds[2]);
     userSeed[i].tournaments.push(tournamnetIds[0])
     userSeed[i].tournaments.push(tournamnetIds[1])
+    userSeed[i].tournaments.push(tournamnetIds[2])
   }
 
     await db.User.deleteMany({})
