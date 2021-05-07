@@ -15,3 +15,31 @@ router
   .delete(postsController.remove);
 
 module.exports = router;
+
+
+const fakeObject = {
+  userId: "60954692286cef4e641cacc3",
+  tournament: "Super Secret FNM",
+  userDeck: {
+    name: "userDeck Test",
+    whiteMana: true,
+    blueMana: true,
+    blackMana: true,
+    redMana: true,
+    greenMana: true,
+  },
+  oppDeck: {
+    name: "oppDeck Test",
+    whiteMana: false,
+    blueMana: false,
+    blackMana: false,
+    redMana: true,
+    greenMana: true,
+  },
+  matchData: {
+    wins: 2,
+    losses: 1,
+    oppName: "Test",
+    notes: "This is a test input"
+  }
+}
