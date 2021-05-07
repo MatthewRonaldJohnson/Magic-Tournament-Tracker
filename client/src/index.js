@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { StoreProvider } from "./utils/GlobalState";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router} from "react-router-dom";
 import { Auth0Provider} from "@auth0/auth0-react";
 
 ReactDOM.render(
