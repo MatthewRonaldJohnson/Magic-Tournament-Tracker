@@ -11,8 +11,8 @@ class DeckCard extends Component {
   handleDeckNameChange = async (e) => {
     const deckName = e.target.value;
     const deckParam = deckName.toLocaleLowerCase();
-    const checked = await this.props.userDeckState.decks.filter((decks) => {
-      return decks.deckName.toLowerCase().includes(deckParam);
+    const checked = await this.props.decks.filter((decks) => {
+      return decks.deckName.toLocaleLowerCase().includes(deckParam);
     });
 
     if (deckName === '' || checked.length === 0) {
