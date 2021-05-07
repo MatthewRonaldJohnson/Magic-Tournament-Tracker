@@ -37,14 +37,18 @@ function BarChart({data, type}) {
     
     console.log('chart data', data)
     const chart = useRef();
+    let myChart;
+    if(myChart){
+        myChart.update()
+    }
     useEffect(() => {
-        const myChart = new Chart(chart.current.getContext("2d"), {
+        console.log('hit')
+        myChart = new Chart(chart.current.getContext("2d"), {
             type,
             data: data,
             options
         });
-        myChart.update()
-    }, [data])
+    }, [])
     return (
             <canvas ref={chart} id="chart"></canvas>
     )
