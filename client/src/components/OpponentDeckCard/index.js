@@ -4,7 +4,7 @@ class OpponentDeckCard extends Component {
   render() {
     return (
       <>
-        <div id="opponent" className="deckInput col-12 col-lg-6 py-2">
+        <div id="opponent" className="deckInput col-12 col-lg-6 pt-2">
           <div className="form-group">
             <label htmlFor="oppDeckname">Opponent Deck Name: </label>
             <input id="oppDeckName" className="form-control" type="text" />
