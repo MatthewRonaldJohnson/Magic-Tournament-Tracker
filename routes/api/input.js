@@ -6,7 +6,6 @@ router.post("/", async (req, res) => {
     const { tournament, userDeck, oppDeck, matchData, userId } = req.body
     let userDeckId = await Deck.findOne({ deckName: userDeck.name })
     if (!userDeckId) {
-        console.log(userDeck)
         userDeckId = await Deck.create({
             deckName: userDeck.name,
             whiteMana: userDeck.whiteMana,

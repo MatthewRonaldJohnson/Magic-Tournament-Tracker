@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect} from 'react';
 import { useStoreContext } from '../utils/GlobalState';
 import SelectOption from '../components/SelectOption';
-import API from '../utils/API';
 
 import BarChart from '../components/BarChart';
 import dataMaker from '../utils/CreateBarChartData';
 
 export default function Analytics() {
-  const [state, dispatch] = useStoreContext();
+  const [state] = useStoreContext();
   const [chartData, setChartData] = useState(null);
   const [renderSwitch, setRenderSwtich] = useState(true);
   const firstTournament = state.tournaments[0];
@@ -23,6 +22,7 @@ export default function Analytics() {
       dataMaker.createBarChartData(displayedTournament.tournamentData)
     );
     setRenderSwtich(!renderSwitch)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [displayedTournament.name]);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export default function Analytics() {
       });
       setRenderSwtich(!renderSwitch);
     }
-    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [firstTournament]);
 
   const handleSelectChange = async (e) => {

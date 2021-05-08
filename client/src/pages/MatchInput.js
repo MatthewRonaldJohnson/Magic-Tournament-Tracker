@@ -6,8 +6,11 @@ import OpponentDeckCard from '../components/OpponentDeckCard';
 import MatchNotes from '../components/MatchNotes';
 import SubmitBtn from '../components/SubmitBtn';
 import API from '../utils/API';
+import { useAuth0 } from "@auth0/auth0-react";
+import { SET_USER } from "../utils/actions";
 
 export default function MatchInput() {
+  const { user } = useAuth0();
   const [state, dispatch] = useStoreContext();
   const [tournamentState, setTournamentState] = useState({
     freePlayClicked: false,
@@ -32,14 +35,14 @@ export default function MatchInput() {
   });
   const [matchDataState, setMatchDataState] = useState();
 
-  function handleFormSubmit(e) {
+  async function handleFormSubmit(e) {
     e.preventDefault();
     if (
       userDeckState.deckName &&
       tournamentState.userInput &&
       oppDeckState.deckName
     ) {
-      API.submitMatch({
+      await API.submitMatch({
         userID: state.userId,
         tournament: tournamentState.userInput,
         userDeck: {
@@ -65,6 +68,19 @@ export default function MatchInput() {
           notes: matchDataState.matchNotes,
         },
       }).catch((err) => console.log(err));
+      API.getUserId(user.email)
+        .then(res => {
+          dispatch({
+            type: SET_USER,
+            payload: {
+              id: res.data._id,
+              tournaments: res.data.tournaments,
+              decks: res.data.decks
+            }
+          })
+
+        })
+
     }
   }
 
