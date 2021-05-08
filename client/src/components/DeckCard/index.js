@@ -23,6 +23,7 @@ class DeckCard extends Component {
         redMana: false,
         greenMana: false,
         blackMana: false,
+        deckName: deckName,
       });
     } else if (checked.length === 1) {
       this.props.setUserDeckState({
