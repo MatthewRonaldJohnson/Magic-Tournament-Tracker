@@ -3,7 +3,7 @@ const { User, Tournament, MatchData, Deck } = require("../../models");
 
 // /api/input/
 router.post("/", async (req, res) => {
-    const { tournament, userDeck, oppDeck, matchData, userId } = req.body
+    const { tournament, userDeck, oppDeck, matchData, userID } = req.body
     let userDeckId = await Deck.findOne({ deckName: userDeck.name })
     if (!userDeckId) {
         userDeckId = await Deck.create({
@@ -14,6 +14,10 @@ router.post("/", async (req, res) => {
             redMana: userDeck.redMana,
             greenMana: userDeck.greenMana,
         })
+        await User.updateOne(
+            { _id: userID },
+            { $push: { decks: userDeckId } }
+        )
     }
     let oppDeckId = await Deck.findOne({ deckName: oppDeck.name })
     if (!oppDeckId) {
@@ -42,7 +46,7 @@ router.post("/", async (req, res) => {
             tournamentData: [],
         })
         await User.updateOne(
-            { _id: userId },
+            { _id: userID },
             { $push: { tournaments: tournamentId } }
         )
     }

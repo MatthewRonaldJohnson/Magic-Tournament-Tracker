@@ -37,12 +37,15 @@ export default function MatchInput() {
 
   async function handleFormSubmit(e) {
     e.preventDefault();
+    console.log('hit submit')
+    console.log(userDeckState.deckName)
     if (
       userDeckState.deckName &&
       tournamentState.userInput &&
       oppDeckState.deckName
     ) {
-      await API.submitMatch({
+      console.log('passed if')
+      const newMatch = await API.submitMatch({
         userID: state.userId,
         tournament: tournamentState.userInput,
         userDeck: {
@@ -68,6 +71,7 @@ export default function MatchInput() {
           notes: matchDataState.matchNotes,
         },
       }).catch((err) => console.log(err));
+      console.log('new Match', newMatch)
       API.getUserId(user.email)
         .then(res => {
           dispatch({
