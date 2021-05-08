@@ -33,15 +33,15 @@ const userSeed = [
 const tournamentSeed = [
   {
 
-    tournamentName: 'MTG West Prelims',
+    tournamentName: 'GP Austin',
     tournamentData: [],
   },
   {
-    tournamentName: 'MTG East Finals',
+    tournamentName: 'MCQ 5/8/21',
     tournamentData: [],
   },
   {
-    tournamentName: 'MTG NA Regionals',
+    tournamentName: 'FNM 5/7/21',
     tournamentData: [],
   },
 ];
@@ -113,11 +113,32 @@ const matchSeed = [
     opponentsName: 'Matthew',
   },
   {
-    wins: 3,
+    wins: 2,
     losses: 0,
     result: true,
     notes: '',
     opponentsName: 'Manny',
+  },
+  {
+    wins: 1,
+    losses: 2,
+    result: false,
+    notes: '',
+    opponentsName: 'Jimbo',
+  },
+  {
+    wins: 2,
+    losses: 1,
+    result: true,
+    notes: '',
+    opponentsName: 'Trey',
+  },
+  {
+    wins: 0,
+    losses: 2,
+    result: false,
+    notes: '',
+    opponentsName: 'Tas',
   },
 ];
 
@@ -156,7 +177,7 @@ const seed = async function () {
 
   for (let i = 0; i < tournamentSeed.length; i++) {
     tournamentSeed[i].deck = deckIds[i];
-    tournamentSeed[i].tournamentData.push(matchIds[1]);
+    tournamentSeed[i].tournamentData.push(matchIds[0]);
     tournamentSeed[i].tournamentData.push(matchIds[1]);
     tournamentSeed[i].tournamentData.push(matchIds[2]);
   }
