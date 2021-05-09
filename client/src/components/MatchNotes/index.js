@@ -56,6 +56,7 @@ class MatchNotes extends Component {
               <div className="col-12">
                 <label>Notes</label>
                 <textarea
+                placeholder="Optional: Notes about the matchup"
                   className="form-control"
                   name=""
                   id=""
