@@ -18,6 +18,7 @@ class OpponentDeckCard extends Component {
               id="oppDeckName"
               className="form-control"
               type="text"
+              value={this.props.oppDeckState.deckName}
               onChange={this.handleDeckNameChange}
             />
             <div className="manaCheckBox white form-check form-check-inline">

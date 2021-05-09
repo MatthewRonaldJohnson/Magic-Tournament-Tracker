@@ -1,22 +1,31 @@
 import React, { useState } from 'react';
 import { useStoreContext } from '../utils/GlobalState';
+import { useAuth0 } from '@auth0/auth0-react';
+import { SET_USER } from '../utils/actions';
+import API from '../utils/API';
 import TournamentCard from '../components/TournamentCard';
 import DeckCard from '../components/DeckCard';
 import OpponentDeckCard from '../components/OpponentDeckCard';
 import MatchNotes from '../components/MatchNotes';
 import SubmitBtn from '../components/SubmitBtn';
-import API from '../utils/API';
-import { useAuth0 } from "@auth0/auth0-react";
-import { SET_USER } from "../utils/actions";
+import Alert from '../components/Alert';
 
 export default function MatchInput() {
-  const { user } = useAuth0();
-  const [state, dispatch] = useStoreContext();
-  const [tournamentState, setTournamentState] = useState({
+  const defaultOppDeckState = {
+    deckName: '',
+    whiteMana: false,
+    blueMana: false,
+    blackMana: false,
+    redMana: false,
+    greenMana: false,
+  };
+
+  const defaultTournamentState = {
     freePlayClicked: false,
     userInput: '',
-  });
-  const [userDeckState, setUserDeckState] = useState({
+  };
+
+  const defaultUserDeckState = {
     decks: [],
     deckName: '',
     whiteMana: false,
@@ -24,16 +33,24 @@ export default function MatchInput() {
     blackMana: false,
     redMana: false,
     greenMana: false,
-  });
-  const [oppDeckState, setOppDeckState] = useState({
-    deckName: '',
-    whiteMana: false,
-    blueMana: false,
-    blackMana: false,
-    redMana: false,
-    greenMana: false,
-  });
-  const [matchDataState, setMatchDataState] = useState();
+  };
+
+  const defaultAlertState = {
+    type: '',
+    text: '',
+  };
+
+  const defaultMatchDataState = {};
+
+  const { user } = useAuth0();
+  const [state, dispatch] = useStoreContext();
+  const [alertState, setAlertState] = useState(defaultAlertState);
+  const [matchDataState, setMatchDataState] = useState(defaultMatchDataState);
+  const [tournamentState, setTournamentState] = useState(
+    defaultTournamentState
+  );
+  const [userDeckState, setUserDeckState] = useState(defaultUserDeckState);
+  const [oppDeckState, setOppDeckState] = useState(defaultOppDeckState);
 
   async function handleFormSubmit(e) {
     e.preventDefault();
@@ -42,7 +59,7 @@ export default function MatchInput() {
       tournamentState.userInput &&
       oppDeckState.deckName
     ) {
-      const newMatch = await API.submitMatch({
+      await API.submitMatch({
         userID: state.userId,
         tournament: tournamentState.userInput,
         userDeck: {
@@ -67,20 +84,33 @@ export default function MatchInput() {
           oppName: matchDataState.oppName,
           notes: matchDataState.matchNotes,
         },
-      }).catch((err) => console.log(err));
-      API.getUserId(user.email)
-        .then(res => {
-          dispatch({
-            type: SET_USER,
-            payload: {
-              id: res.data._id,
-              tournaments: res.data.tournaments,
-              decks: res.data.decks
-            }
-          })
-
+      })
+        .then((res) => {
+          if (res.status === 200) {
+            setMatchDataState(defaultMatchDataState);
+            setOppDeckState(defaultOppDeckState);
+            setAlertState({
+              type: 'success',
+              text: 'Submitted Successfully!',
+            });
+          }
         })
-
+        .catch((err) => setAlertState({ text: err, type: 'warning' }));
+      API.getUserId(user.email).then((res) => {
+        dispatch({
+          type: SET_USER,
+          payload: {
+            id: res.data._id,
+            tournaments: res.data.tournaments,
+            decks: res.data.decks,
+          },
+        });
+      });
+    } else {
+      setAlertState({
+        type: 'warning',
+        text: 'Please make sure to fill out the form before submitting',
+      });
     }
   }
 
@@ -108,6 +138,12 @@ export default function MatchInput() {
           setMatchDataState={setMatchDataState}
         />
         <SubmitBtn onClick={handleFormSubmit} />
+        <Alert
+          type={alertState.type}
+          style={{ opacity: alertState ? 1 : 0, marginBottom: 10 }}
+        >
+          {alertState.text}
+        </Alert>
       </div>
     </div>
   );
