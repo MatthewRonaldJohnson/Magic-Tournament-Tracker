@@ -14,7 +14,8 @@ class MatchNotes extends Component {
                   className="form-control"
                   placeholder="Wins"
                   min="0"
-                  max="2"
+                  max="9"
+                  value={this.props.matchDataState.wins || ''}
                   onChange={(e) => {
                     this.props.setMatchDataState({
                       ...this.props.matchDataState,
@@ -30,7 +31,8 @@ class MatchNotes extends Component {
                   className="form-control"
                   placeholder="Losses"
                   min="0"
-                  max="2"
+                  max="9"
+                  value={this.props.matchDataState.losses || ''}
                   onChange={(e) => {
                     this.props.setMatchDataState({
                       ...this.props.matchDataState,
@@ -45,6 +47,7 @@ class MatchNotes extends Component {
                   type="text"
                   className="form-control"
                   placeholder="Opponent Name"
+                  value={this.props.matchDataState.oppName || ''}
                   onChange={(e) => {
                     this.props.setMatchDataState({
                       ...this.props.matchDataState,
@@ -56,10 +59,11 @@ class MatchNotes extends Component {
               <div className="col-12">
                 <label>Notes</label>
                 <textarea
-                placeholder="Optional: Notes about the matchup"
+                  placeholder="Optional: Notes about the matchup"
                   className="form-control"
                   name=""
                   id=""
+                  value={this.props.matchDataState.matchNotes || ''}
                   onChange={(e) => {
                     this.props.setMatchDataState({
                       ...this.props.matchDataState,
