@@ -7,6 +7,8 @@ import NoCardFound from "../components/NoCardFound";
 import CardImage from "../components/CardImage";
 import DFCImage from "../components/DFCImage";
 
+import formatDFCArray from "../utils/formatDoubleFaceCardArrays";
+
 export default function CardSearch() {
     const [searchTerm, setSearchTerm] = useState("research assistant");
     const [noCardFound, setNoCardFound] = useState(false);
@@ -30,8 +32,13 @@ export default function CardSearch() {
                 .then(res => {
                     let oracle_text, border_crop, mana_cost, power, toughness, loyalty;
                     if(res.data.card_faces){
-                        oracle_text = res.data?.card_faces.map(card_face => card_face.oracle_text)
-                        border_crop = res.data?.card_faces.map(card_face => card_face.image_uris.border_crop)
+                        oracle_text = res.data.card_faces.map(card_face => card_face.oracle_text)
+                        border_crop = res.data.card_faces.map(card_face => card_face.image_uris?.border_crop)
+                        if(!border_crop[0]) border_crop = res.data.image_uris.border_crop
+                        mana_cost = formatDFCArray(res.data.card_faces.map(card_face => card_face.mana_cost))
+                        power = res.data.card_faces.map(card_face => card_face.power)
+                        toughness = res.data.card_faces.map(card_face => card_face.toughness)
+                        loyalty = formatDFCArray(res.data.card_faces.map(card_face => card_face.loyalty))
                     } else {
                     ({oracle_text, image_uris: {border_crop}, mana_cost, power, toughness, loyalty} = res.data);
                     }
