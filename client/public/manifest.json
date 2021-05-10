@@ -2,9 +2,15 @@
   "short_name": "MTT",
   "name": "Magic Tournament Tracker",
   "icons": [
+    {
+      "src": "./512MTTIcon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
   ],
-  "start_url": "./index.html",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "description": "An application for competitive magic players to track their match data."
 }
