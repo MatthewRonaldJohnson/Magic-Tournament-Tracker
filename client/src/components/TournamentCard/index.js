@@ -12,11 +12,25 @@ class TournamentCard extends Component {
     }
   };
 
-  handleInputChange = (e) => {
-    this.props.setTournamentState({
+  handleInputChange = async (e) => {
+    await this.props.setTournamentState({
       ...this.props.tournamentState,
       userInput: e.target.value,
-    });
+    })
+    for (let i = 0; i < this.props.tournaments.length; i++) {
+      if (this.props.tournaments[i].tournamentName === this.props.tournamentState.userInput) {
+        this.props.setUserDeckState({
+          ...this.props.userDeckState,
+          deckName: this.props.tournaments[i].deck.deckName,
+          whiteMana: this.props.tournaments[i].deck.whiteMana,
+          blueMana: this.props.tournaments[i].deck.blueMana,
+          blackMana: this.props.tournaments[i].deck.blackMana,
+          redMana: this.props.tournaments[i].deck.redMana,
+          greenMana: this.props.tournaments[i].deck.greenMana,
+        })
+      }
+    }
+
   };
   render() {
     return (
