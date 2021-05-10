@@ -24,7 +24,7 @@ body {
 .cardData {
   background-color: var(--primary);
   font-weight: bold;
-  border-radius: 2%;
+  border-radius: 5px;
 }
 
 .cardImage-container {
@@ -108,4 +108,8 @@ body {
 .center-image img {
   max-width: 100%;
   max-height: 1000%;
+}
+
+p {
+  white-space: pre-wrap;
 }
