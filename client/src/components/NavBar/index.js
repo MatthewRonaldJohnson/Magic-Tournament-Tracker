@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import {Link} from "react-router-dom"
+import logo from "./assets/MTTIcon.png"
 
 function NavBar() {
   const { logout } = useAuth0();
@@ -9,7 +10,7 @@ function NavBar() {
     <nav className="navbar navbar-dark bg-dark">
       <Link className="navbar-brand" to="/">
         <img
-          src={require('./assets/favicon.ico')}
+          src={logo}
           width="30"
           height="30"
           className="d-inline-block align-top mr-2"
