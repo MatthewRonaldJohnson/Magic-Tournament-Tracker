@@ -10,6 +10,7 @@ export default {
   },
 
   submitMatch: function(postData){
+    console.log(postData)
     return axios.post("api/input/", postData)
   }
 };
