@@ -79,8 +79,8 @@ export default function MatchInput() {
           greenMana: oppDeckState.greenMana,
         },
         matchData: {
-          wins: matchDataState.wins,
-          losses: matchDataState.losses,
+          wins: matchDataState.wins || 0,
+          losses: matchDataState.losses || 0,
           oppName: matchDataState.oppName,
           notes: matchDataState.matchNotes,
         },
