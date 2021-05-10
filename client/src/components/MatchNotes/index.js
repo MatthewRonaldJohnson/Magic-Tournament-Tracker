@@ -15,7 +15,7 @@ class MatchNotes extends Component {
                   placeholder="Wins"
                   min="0"
                   max="9"
-                  value={this.props.matchDataState.wins || ''}
+                  value={this.props.matchDataState.wins || 0}
                   onChange={(e) => {
                     this.props.setMatchDataState({
                       ...this.props.matchDataState,
@@ -32,7 +32,7 @@ class MatchNotes extends Component {
                   placeholder="Losses"
                   min="0"
                   max="9"
-                  value={this.props.matchDataState.losses || ''}
+                  value={this.props.matchDataState.losses  || 0}
                   onChange={(e) => {
                     this.props.setMatchDataState({
                       ...this.props.matchDataState,

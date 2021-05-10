@@ -93,6 +93,9 @@ export default function MatchInput() {
               type: 'success',
               text: 'Submitted Successfully!',
             });
+            setTimeout(function(){
+              setAlertState(defaultAlertState)
+            }, 1000)
           }
         })
         .catch((err) => setAlertState({ text: err, type: 'warning' }));
@@ -111,6 +114,9 @@ export default function MatchInput() {
         type: 'warning',
         text: 'Please make sure to fill out the form before submitting',
       });
+      setTimeout(function(){
+        setAlertState(defaultAlertState)
+      }, 1000)
     }
   }
 
@@ -121,6 +127,8 @@ export default function MatchInput() {
           tournaments={state.tournaments}
           setTournamentState={setTournamentState}
           tournamentState={tournamentState}
+          setUserDeckState={setUserDeckState}
+          userDeckState={userDeckState}
         />
         <div className="row">
           <DeckCard

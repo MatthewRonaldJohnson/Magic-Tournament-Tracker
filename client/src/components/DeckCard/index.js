@@ -50,6 +50,7 @@ class DeckCard extends Component {
               className="form-control"
               type="text"
               onChange={this.handleDeckNameChange}
+              value={this.props.userDeckState.deckName}
             />
             <datalist id="prevDecks">
               {this.props.decks.map((data) => {
