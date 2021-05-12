@@ -33,7 +33,6 @@ The card search page allows user to type in a card name and the card image along
 
 We have many ideas to grow Magic Tournament Tracker in the future.  
 Primarily we would like add the ability to generate graphical charts of win rates with a specific deck across all tournaments.  
-We wish to turn this into a PWA so users could download the app onto their phone for easy use when at a tournament.  
 We would like to integrate offline functionality to stash user data submissions and once the user reconnects transfer that over to the database.  
 We want to add more gameplay utilities such as a life counter. 
 
