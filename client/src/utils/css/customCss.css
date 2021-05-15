@@ -98,16 +98,14 @@ body {
 
 .center-image {
   display: flex;
-  justify-content: center; /* horizontally center */
-  align-items: center; /* vertically center */
-  /* height: 512px; */
-  /* width: 512px; */
+  justify-content: center;
+  align-items: center;
   margin: 2%;
 }
 
 .center-image img {
   max-width: 100%;
-  max-height: 1000%;
+  max-height: 100%;
 }
 
 p {
