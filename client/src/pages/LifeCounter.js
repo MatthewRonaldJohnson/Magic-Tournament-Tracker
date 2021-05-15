@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 export default function LifeCounter() {
   const [userLifeState, setUserLifeState] = useState(20);
+  const [oppLifeState, setOppLifeState] = useState(20);
 
   const handleUserLifeChange = (e) => {
     const lifeChangeAmount = e.target.value;
@@ -11,10 +12,32 @@ export default function LifeCounter() {
     switch (operator) {
       case '+':
         setUserLifeState(userLifeState + parseInt(lifeChangeAmount));
-        gameEndCheck();
         break;
       case '-':
-        setUserLifeState(userLifeState - parseInt(lifeChangeAmount));
+        if (userLifeState > 0) {
+          setUserLifeState(userLifeState - parseInt(lifeChangeAmount));
+        }
+        gameEndCheck();
+        break;
+      default:
+        console.error('You broke it chief.');
+        break;
+    }
+  };
+
+  const handleOppLifeChange = (e) => {
+    const lifeChangeAmount = e.target.value;
+    const operator = e.target.dataset.operator;
+
+    // Switch case determines what operator we're using.
+    switch (operator) {
+      case '+':
+        setOppLifeState(oppLifeState + parseInt(lifeChangeAmount));
+        break;
+      case '-':
+        if (oppLifeState > 0) {
+          setOppLifeState(oppLifeState - parseInt(lifeChangeAmount));
+        }
         gameEndCheck();
         break;
       default:
@@ -24,13 +47,17 @@ export default function LifeCounter() {
   };
 
   const gameEndCheck = () => {
-      if(userLifeState < 1) {
-        console.log("You're dead chief.")
-      }
-  }
+    if (userLifeState > 0 && oppLifeState > 0) {
+      return;
+    } else if (userLifeState < 1) {
+      console.log("You're dead chief.");
+    } else {
+      console.log("They're dead chief.");
+    }
+  };
 
   return (
-    <div id="LifeContainer" className="container vh-">
+    <div id="LifeCounterContainer" style={{ height: '80vh' }}>
       <div className="Container text-center">
         <h1>{userLifeState}</h1>
         <button value="1" data-operator="+" onClick={handleUserLifeChange}>
@@ -40,7 +67,7 @@ export default function LifeCounter() {
           -
         </button>
       </div>
-      {/* <br />
+      <br />
       <div>
         <button>Home</button>
         <button>Reset</button>
@@ -48,12 +75,14 @@ export default function LifeCounter() {
 
       <br />
       <div id="container text-center">
-        <h1 id="player2life">20</h1>
-        <button data="+" id="addP2">
+        <h1>{oppLifeState}</h1>
+        <button value="1" data-operator="+" onClick={handleOppLifeChange}>
           +
         </button>
-        <button id="subtractP2">-</button>
-      </div> */}
+        <button value="1" data-operator="-" onClick={handleOppLifeChange}>
+          -
+        </button>
+      </div>
     </div>
   );
 }
