@@ -15,7 +15,7 @@ class DeckCard extends Component {
       return decks.deckName.toLocaleLowerCase().includes(deckParam);
     });
 
-    if (deckName === '' || checked.length === 0) {
+    if (checked.length === 0 || checked.length > 1) {
       this.props.setUserDeckState({
         ...this.props.userDeckState,
         whiteMana: false,
