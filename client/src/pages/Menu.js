@@ -8,8 +8,8 @@ export default function Menu() {
             <div className="row">
                 <MenuButton location="/MatchInput" text="Match Input" btnClass="btn-primary"/>
                 <MenuButton location="/Analytics" text="Analytics" btnClass="btn-secondary"/>
-                {/* <MenuButton location="/LifeCounter" text=" Life Counter" btnClass="btn-primary"/> */}
-                <MenuButton location="/CardSearch" text="Card Search" btnClass="btn-primary"/>
+                <MenuButton location="/LifeCounter" text=" Life Counter" btnClass="btn-primary"/>
+                <MenuButton location="/CardSearch" text="Card Search" btnClass="btn-secondary"/>
             </div>
         </div>
     )

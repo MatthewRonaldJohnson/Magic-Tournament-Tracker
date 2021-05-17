@@ -1,8 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-
-
 import Analytics from "./pages/Analytics";
 import CardSearch from "./pages/CardSearch";
 import LandingPage from "./pages/LandingPage";
@@ -43,7 +41,7 @@ function App() {
   
 
   return (
-      <div>
+      <>
           <NavBar />
           <Switch>
             <Route exact path="/" component={Menu} />
@@ -54,7 +52,7 @@ function App() {
             <Route component={NoMatch} />
           </Switch>
           <Footer />
-      </div>
+      </>
   );
 }
 
