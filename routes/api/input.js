@@ -3,11 +3,12 @@ const { User, Tournament, MatchData, Deck } = require("../../models");
 
 // /api/input/
 router.post("/", async (req, res) => {
-    const { tournament, userDeck, oppDeck, matchData, userID } = req.body
-    let userDeckId = await Deck.findOne({ deckName: userDeck.name })
+    const { tournament, format, userDeck, oppDeck, matchData, userID } = req.body
+    let userDeckId = await Deck.findOne({ deckName: userDeck.name, format: format })
     if (!userDeckId) {
         userDeckId = await Deck.create({
             deckName: userDeck.name,
+            format: format,
             whiteMana: userDeck.whiteMana,
             blueMana: userDeck.blueMana,
             blackMana: userDeck.blackMana,
@@ -19,10 +20,11 @@ router.post("/", async (req, res) => {
             { $push: { decks: userDeckId } }
         )
     }
-    let oppDeckId = await Deck.findOne({ deckName: oppDeck.name })
+    let oppDeckId = await Deck.findOne({ deckName: oppDeck.name, format: format })
     if (!oppDeckId) {
         oppDeckId = await Deck.create({
             deckName: oppDeck.name,
+            format: format,
             whiteMana: oppDeck.whiteMana,
             blueMana: oppDeck.blueMana,
             blackMana: oppDeck.blackMana,
@@ -38,10 +40,12 @@ router.post("/", async (req, res) => {
         opponentsName: matchData.oppName,
         opponentDeck: oppDeckId,
     })
-    let tournamentId = await Tournament.findOne({ tournamentName: tournament })
+    let tournamentId = await Tournament.findOne({ tournamentName: tournament, userId: userID })
     if (!tournamentId) {
         tournamentId = await Tournament.create({
             tournamentName: tournament,
+            userId: userID,
+            format: format,
             deck: userDeckId,
             tournamentData: [],
         })

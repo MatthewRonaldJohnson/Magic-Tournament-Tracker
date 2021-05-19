@@ -4,6 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { SET_USER } from '../utils/actions';
 import API from '../utils/API';
 import TournamentCard from '../components/TournamentCard';
+import FormatEntry from '../components/FormatEntry';
 import DeckCard from '../components/DeckCard';
 import OpponentDeckCard from '../components/OpponentDeckCard';
 import MatchNotes from '../components/MatchNotes';
@@ -51,6 +52,7 @@ export default function MatchInput() {
   );
   const [userDeckState, setUserDeckState] = useState(defaultUserDeckState);
   const [oppDeckState, setOppDeckState] = useState(defaultOppDeckState);
+  const [formatState, setFormatState] = useState("");
 
   async function handleFormSubmit(e) {
     e.preventDefault();
@@ -62,6 +64,7 @@ export default function MatchInput() {
       await API.submitMatch({
         userID: state.userId,
         tournament: tournamentState.userInput,
+        format: formatState,
         userDeck: {
           name: userDeckState.deckName,
           whiteMana: userDeckState.whiteMana,
@@ -129,7 +132,12 @@ export default function MatchInput() {
           tournamentState={tournamentState}
           setUserDeckState={setUserDeckState}
           userDeckState={userDeckState}
+          setFormatState={setFormatState}
         />
+        <FormatEntry 
+          formatState={formatState}
+          setFormatState={setFormatState}
+          />
         <div className="row">
           <DeckCard
             decks={state.decks}

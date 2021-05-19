@@ -17,31 +17,24 @@ const userSeed = [
     email: 'matthewronaldjohnson@gmail.com',
     decks: [],
     tournaments: [],
-  },
-  {
-    email: 'jamesfswebdev@gmail.com',
-    decks: [],
-    tournaments: [],
-  },
-  {
-    email: 'manny@test.com',
-    decks: [],
-    tournaments: [],
-  },
+  }
 ];
 
 const tournamentSeed = [
   {
 
     tournamentName: 'GP Austin',
+    format: "Standard",
     tournamentData: [],
   },
   {
     tournamentName: 'MCQ 5/8/21',
+    format: "Modern",
     tournamentData: [],
   },
   {
     tournamentName: 'FNM 5/7/21',
+    format: "Pioneer",
     tournamentData: [],
   },
 ];
@@ -49,6 +42,7 @@ const tournamentSeed = [
 const deckSeed = [
   {
     deckName: 'Rogues',
+    format: "Standard",
     whiteMana: false,
     blueMana: true,
     blackMana: true,
@@ -57,6 +51,7 @@ const deckSeed = [
   },
   {
     deckName: 'Izzet',
+    format: "Modern",
     whiteMana: false,
     blueMana: true,
     blackMana: false,
@@ -65,6 +60,7 @@ const deckSeed = [
   },
   {
     deckName: 'Rakdos',
+    format: "Pioneer",
     whiteMana: false,
     blueMana: false,
     blackMana: true,
@@ -73,6 +69,7 @@ const deckSeed = [
   },
   {
     deckName: 'Jund',
+    format: "Standard",
     whiteMana: false,
     blueMana: false,
     blackMana: true,
@@ -81,6 +78,7 @@ const deckSeed = [
   },
   {
     deckName: 'Tron',
+    format: "Modern",
     whiteMana: false,
     blueMana: false,
     blackMana: false,
@@ -89,6 +87,7 @@ const deckSeed = [
   },
   {
     deckName: 'UW Control',
+    format: "Pioneer",
     whiteMana: true,
     blueMana: true,
     blackMana: false,
@@ -145,6 +144,7 @@ const matchSeed = [
 let deckIds = [];
 let matchIds = [];
 let tournamnetIds = [];
+let userIds = [];
 
 const seed = async function () {
   await db.Deck.deleteMany({})
@@ -193,7 +193,7 @@ const seed = async function () {
       console.error(err);
     });
 
-  for (let i = 0; i < userSeed.length; i++){
+  for (let i = 0; i < userSeed.length; i++) {
     userSeed[i].decks.push(deckIds[0]);
     userSeed[i].decks.push(deckIds[1]);
     userSeed[i].decks.push(deckIds[2]);
@@ -202,17 +202,20 @@ const seed = async function () {
     userSeed[i].tournaments.push(tournamnetIds[2])
   }
 
-    await db.User.deleteMany({})
-      .then(() => db.User.collection.insertMany(userSeed))
-      .then((data) => {
-        console.log("===========Users")
-        console.log(data.insertedIds);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+  await db.User.deleteMany({})
+    .then(() => db.User.collection.insertMany(userSeed))
+    .then((data) => {
+      console.log("===========Users")
+      console.log(data.insertedIds);
+      userIds = data.insertedIds;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 
-    process.exit(0)
+  await db.Tournament.updateMany({}, {userId : userIds[0]})
+
+  process.exit(0)
 }
 
 seed();
