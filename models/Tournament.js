@@ -4,6 +4,8 @@ const Schema = mongoose.Schema;
 
 const TournamentSchema = new Schema({
   tournamentName: String,
+  userId: Schema.Types.ObjectId,
+  format: String,
   deck: {
     type: Schema.Types.ObjectId,
     ref: 'Deck',

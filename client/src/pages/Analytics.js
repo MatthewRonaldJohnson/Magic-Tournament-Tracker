@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useStoreContext } from '../utils/GlobalState';
 import SelectOption from '../components/SelectOption';
 
@@ -9,6 +9,7 @@ export default function Analytics() {
   const [state] = useStoreContext();
   const [chartData, setChartData] = useState(null);
   const [renderSwitch, setRenderSwtich] = useState(true);
+  const [displayMode, setDisplayMode] = useState("Tournament");
   const firstTournament = state.tournaments[0];
   const [displayedTournament, setDisplayedTournament] = useState({
     id: '',
@@ -51,32 +52,48 @@ export default function Analytics() {
     setRenderSwtich(!renderSwitch);
   };
 
+  const handleDisplayModeChange = (e) => {
+    setDisplayMode(e.target.value)
+  }
+
   return (
     <div className="container mt-2">
       <div className="row">
         <div className="input-group mb-3">
           <div className="input-group-prepend">
-            <label className="input-group-text" htmlFor="tournamentSelect">
-              Tournament
-            </label>
+            <select
+              className="input-group-text"
+              htmlFor="tournamentSelect"
+              id="displayModeSelect"
+              value={displayMode}
+              onChange={handleDisplayModeChange}
+            >
+              <option>Tournament</option>
+              <option>Deck</option>
+            </select>
           </div>
-          <select
-            className="custom-select"
-            id="tournamentSelect"
-            value={displayedTournament.id}
-            onChange={handleSelectChange}
-          >
-            {state.tournaments.map((tournament, i) => {
-              return (
-                <SelectOption
-                  selected={i === 0 ? true : false}
-                  key={tournament._id}
-                  id={tournament._id}
-                  text={tournament.tournamentName}
-                />
-              );
-            })}
-          </select>
+          {displayMode === "Tournament" ?
+            <select
+              className="custom-select"
+              id="tournamentSelect"
+              value={displayedTournament.id}
+              onChange={handleSelectChange}
+            >
+              {state.tournaments.map((tournament, i) => {
+                return (
+                  <SelectOption
+                    selected={i === 0 ? true : false}
+                    key={tournament._id}
+                    id={tournament._id}
+                    text={tournament.tournamentName}
+                  />
+                );
+              })}
+            </select> :
+            <select>
+              <option>On Deck</option>
+            </select>
+          }
         </div>
       </div>
       <div className="row chartContainer">

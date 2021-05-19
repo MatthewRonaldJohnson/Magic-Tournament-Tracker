@@ -28,6 +28,7 @@ class TournamentCard extends Component {
           redMana: this.props.tournaments[i].deck.redMana,
           greenMana: this.props.tournaments[i].deck.greenMana,
         })
+        this.props.setFormatState(this.props.tournaments[i].format)
       }
     }
 
