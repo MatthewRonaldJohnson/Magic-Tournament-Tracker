@@ -11,8 +11,12 @@ class DeckCard extends Component {
   handleDeckNameChange = async (e) => {
     const deckName = e.target.value;
     const deckParam = deckName.toLocaleLowerCase();
-    const checked = await this.props.decks.filter((decks) => {
-      return decks.deckName.toLocaleLowerCase().includes(deckParam);
+    const checked = await this.props.decks.filter((deck) => {
+      return (
+        deck.deckName.toLocaleLowerCase().includes(deckParam)
+        &&
+        deck.format === this.props.formatState
+      );
     });
 
     if (checked.length === 0 || checked.length > 1) {
@@ -54,7 +58,9 @@ class DeckCard extends Component {
             />
             <datalist id="prevDecks">
               {this.props.decks.map((data) => {
-                return <option value={data.deckName} key={data._id} />;
+                return <option value={data.deckName} key={data._id}>
+                        {data.format}
+                        </option>;
               })}
             </datalist>
             <div className="manaCheckBox white form-check form-check-inline">

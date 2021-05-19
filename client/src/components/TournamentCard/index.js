@@ -34,7 +34,6 @@ class TournamentCard extends Component {
 
   };
   render() {
-    console.log(this.props)
     return (
       <>
         <div className="row my-3">

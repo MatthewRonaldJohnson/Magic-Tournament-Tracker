@@ -143,6 +143,7 @@ export default function MatchInput() {
             decks={state.decks}
             userDeckState={userDeckState}
             setUserDeckState={setUserDeckState}
+            formatState={formatState}
           />
           <OpponentDeckCard
             oppDeckState={oppDeckState}
