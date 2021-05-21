@@ -49,5 +49,43 @@ export default {
             data.datasets[2].data = winPercentage;
         }
         return data
+    },
+
+    createFormatChartData: function([decks, tournaments]){
+        const deckNames = [];
+        const numOfMatches = [];
+        const numOfWins = [];
+        const winPercentage = [];
+        for (let i = 0; i < decks.length; i++) {
+            const deck = decks[i];
+            let indexOfDeck = deckNames.findIndex(name => name === deck.deckName)
+            if (indexOfDeck === -1){
+                indexOfDeck = deckNames.length
+                deckNames.push(deck.deckName);
+                numOfMatches.push(0);
+                numOfWins.push(0);
+                winPercentage.push(0);
+            }
+        }
+        for (let i = 0; i < tournaments.length; i++) {
+            const tournament = tournaments[i];
+            let indexToUse = deckNames.findIndex(name => name === tournament.deck.deckName)
+            for (let j = 0; j < tournament.tournamentData.length; j++) {
+                const match = tournament.tournamentData[j];
+                numOfMatches[indexToUse]++;
+                if(match.result) numOfWins[indexToUse]++
+            }
+        }
+        for (let i = 0; i < winPercentage.length; i++) {
+            winPercentage[i] = (numOfWins[i] / numOfMatches[i]) * 100;
+        }
+        if (deckNames.length > 0) {
+            data.labels = deckNames;
+            data.datasets[0].data = numOfMatches;
+            data.datasets[1].data = numOfWins;
+            data.datasets[2].data = winPercentage;
+        }
+
+        return data
     }
 }

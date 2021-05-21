@@ -15,6 +15,9 @@ router.post("/", async (req, res) => {
             redMana: userDeck.redMana,
             greenMana: userDeck.greenMana,
         })
+    }
+    const currentUser = await User.findOne({_id: userID})
+    if (!currentUser.decks.includes(userDeckId._id)){
         await User.updateOne(
             { _id: userID },
             { $push: { decks: userDeckId } }
