@@ -17,6 +17,25 @@ export default function Analytics() {
     deckUsed: '',
     tournamentData: '',
   });
+  const [displayedFormat, setDisplayedFormat] = useState("")
+  const [displayedDeck, setDisplayedDeck] = useState({
+    id: '',
+    name: '',
+    format: '',
+    whiteMana: '',
+    blueMana: '',
+    blackMana: '',
+    redMana: '',
+    greenMana: '',
+  })
+  const formats = [];
+  for (let i = 0; i < state.tournaments.length; i++) {
+    const format = state.tournaments[i].format
+    if (!formats.includes(format)) {
+      formats.push(format)
+    }
+  }
+
 
   useEffect(() => {
     setChartData(
@@ -39,17 +58,43 @@ export default function Analytics() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [firstTournament]);
 
-  const handleSelectChange = async (e) => {
-    const tournament = state.tournaments.find(
-      (tournament) => tournament._id === e.target.value
-    );
-    setDisplayedTournament({
-      id: tournament._id,
-      name: tournament.tournamentName,
-      deckUsed: tournament.deck.deckName,
-      tournamentData: tournament.tournamentData,
-    });
-    setRenderSwtich(!renderSwitch);
+  const handleSelectChange = (e) => {
+    switch (displayMode) {
+      case "Tournament":
+        const tournament = state.tournaments.find(
+          (tournament) => tournament._id === e.target.value
+        );
+        setDisplayedTournament({
+          id: tournament._id,
+          name: tournament.tournamentName,
+          deckUsed: tournament.deck.deckName,
+          tournamentData: tournament.tournamentData,
+        });
+        setRenderSwtich(!renderSwitch);
+        break;
+      case "Format":
+        setDisplayedFormat(e.target.value);
+        break;
+      case "Deck":
+        const deck = state.decks.find(
+          deck => deck._id == e.target.value
+        );
+        setDisplayedDeck({
+            id: deck._id,
+            name: deck.deckName,
+            format: deck.format,
+            whiteMana: deck.whiteMana,
+            blueMana: deck.blueMana,
+            blackMana: deck.blackMana,
+            redMana: deck.redMana,
+            greenMana: deck.greenMana,
+          });
+        break;
+
+
+      default:
+        break;
+    }
   };
 
   const handleDisplayModeChange = (e) => {
@@ -63,37 +108,53 @@ export default function Analytics() {
           <div className="input-group-prepend">
             <select
               className="input-group-text"
-              htmlFor="tournamentSelect"
               id="displayModeSelect"
               value={displayMode}
               onChange={handleDisplayModeChange}
             >
               <option>Tournament</option>
+              <option>Format</option>
               <option>Deck</option>
             </select>
           </div>
-          {displayMode === "Tournament" ?
-            <select
-              className="custom-select"
-              id="tournamentSelect"
-              value={displayedTournament.id}
-              onChange={handleSelectChange}
-            >
-              {state.tournaments.map((tournament, i) => {
+          <select
+            className="custom-select"
+            id="tournamentSelect"
+            onChange={handleSelectChange}
+          >
+            {displayMode === "Tournament" ?
+              state.tournaments.map((tournament, i) => {
                 return (
                   <SelectOption
                     selected={i === 0 ? true : false}
                     key={tournament._id}
-                    id={tournament._id}
-                    text={tournament.tournamentName}
+                    value={tournament._id}
+                    text={tournament.tournamentName + " (" + tournament.format + ")"}
                   />
                 );
-              })}
-            </select> :
-            <select>
-              <option>On Deck</option>
-            </select>
-          }
+              })
+              : displayMode === "Format" ?
+                formats.map((format, i) => {
+                  return (
+                    <SelectOption
+                      selected={i === 0 ? true : false}
+                      key={format}
+                      value={format}
+                      text={format}
+                    />
+                  );
+                }) :
+                state.decks.map((deck, i) => {
+                  return (
+                    <SelectOption
+                      selected={i === 0 ? true : false}
+                      key={deck._id}
+                      value={deck._id}
+                      text={deck.deckName + " (" + deck.format + ")"}
+                    />
+                  );
+                })}
+          </select>
         </div>
       </div>
       <div className="row chartContainer">
