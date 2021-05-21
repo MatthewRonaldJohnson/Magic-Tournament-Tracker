@@ -11,6 +11,7 @@ export default function Analytics() {
   const [renderSwitch, setRenderSwtich] = useState(true);
   const [displayMode, setDisplayMode] = useState("Tournament");
   const firstTournament = state.tournaments[0];
+  const firstDeck = state.decks[0];
   const [displayedTournament, setDisplayedTournament] = useState({
     id: '',
     name: '',
@@ -38,12 +39,32 @@ export default function Analytics() {
 
 
   useEffect(() => {
-    setChartData(
-      dataMaker.createBarChartData(displayedTournament.tournamentData)
-    );
+    let data;
+    switch (displayMode) {
+      case "Tournament":
+        data = displayedTournament.tournamentData
+        break;
+      case "Deck":
+        const relevantTournaments = state.tournaments.filter(tournament => tournament.deck._id === displayedDeck.id)
+        const matchData = relevantTournaments.map(tournament => tournament.tournamentData).flat()
+        data = matchData
+        break;
+      case "Format":
+        const relevantDecks = state.decks.filter(deck => deck.format === displayedFormat)
+        const inFormatTournaments = state.tournaments.filter(tournament => tournament.format === displayedFormat)
+        data = [relevantDecks, inFormatTournaments]
+        break;
+      default:
+        break;
+    }
+    if (displayMode === 'Format') {
+      setChartData(dataMaker.createFormatChartData(data))
+    } else {
+      setChartData(dataMaker.createBarChartData(data))
+    }
     setRenderSwtich(!renderSwitch)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [displayedTournament.name]);
+  }, [displayMode, displayedTournament.name, displayedDeck.name, displayedFormat]);
 
   useEffect(() => {
     if (firstTournament) {
@@ -53,10 +74,31 @@ export default function Analytics() {
         deckUsed: firstTournament.deck.deckName,
         tournamentData: firstTournament.tournamentData,
       });
-      setRenderSwtich(!renderSwitch);
+    }
+  }, [firstTournament]);
+
+  useEffect(() => {
+    if (firstDeck) {
+      setDisplayedDeck({
+        id: firstDeck._id,
+        name: firstDeck.deckName,
+        format: firstDeck.format,
+        whiteMana: firstDeck.whiteMana,
+        blueMana: firstDeck.blueMana,
+        blackMana: firstDeck.blackMana,
+        redMana: firstDeck.redMana,
+        greenMana: firstDeck.greenMana,
+      });
+    }
+  }, [firstDeck]);
+
+  useEffect(() => {
+    if (!displayedFormat) {
+      setDisplayedFormat(formats[0]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [firstTournament]);
+  }, [formats]);
+
 
   const handleSelectChange = (e) => {
     switch (displayMode) {
@@ -77,18 +119,18 @@ export default function Analytics() {
         break;
       case "Deck":
         const deck = state.decks.find(
-          deck => deck._id == e.target.value
+          deck => deck._id === e.target.value
         );
         setDisplayedDeck({
-            id: deck._id,
-            name: deck.deckName,
-            format: deck.format,
-            whiteMana: deck.whiteMana,
-            blueMana: deck.blueMana,
-            blackMana: deck.blackMana,
-            redMana: deck.redMana,
-            greenMana: deck.greenMana,
-          });
+          id: deck._id,
+          name: deck.deckName,
+          format: deck.format,
+          whiteMana: deck.whiteMana,
+          blueMana: deck.blueMana,
+          blackMana: deck.blackMana,
+          redMana: deck.redMana,
+          greenMana: deck.greenMana,
+        });
         break;
 
 
@@ -121,6 +163,10 @@ export default function Analytics() {
             className="custom-select"
             id="tournamentSelect"
             onChange={handleSelectChange}
+            value={displayMode === "Tournament" ? displayedTournament.id :
+              displayMode === "Format" ? displayedFormat :
+                displayedDeck.id
+            }
           >
             {displayMode === "Tournament" ?
               state.tournaments.map((tournament, i) => {
@@ -158,10 +204,15 @@ export default function Analytics() {
         </div>
       </div>
       <div className="row chartContainer">
-        <h1 className="col-12 text-center">{displayedTournament.name}</h1>
+        <h1 className="col-12 text-center">
+          {displayMode === "Tournament" ? <>{displayedTournament.name}</> : <></>}
+          {displayMode === "Format" ? <>{displayedFormat}</> : <></>}
+          {displayMode === "Deck" ? <>{displayedDeck.name}</> : <></>}
+        </h1>
         <BarChart data={chartData} renderSwitch={renderSwitch} />
         <h2 className="col-12 text-center">
-          Playing: {displayedTournament.deckUsed}
+          {displayMode === "Tournament" ? <>Playing: {displayedTournament.deckUsed}</> : <></>}
+          {displayMode === "Deck" ? <>{displayedDeck.format}</> : <></>}
         </h2>
       </div>
     </div>
