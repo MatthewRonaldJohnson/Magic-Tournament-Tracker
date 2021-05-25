@@ -49,10 +49,12 @@ export default function LifeCounter() {
         console.error('You broke it chief.');
         break;
     }
+    setUserLifeChangeAmountState(1)
   };
 
   useEffect(() => {
     gameEndCheck();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userLifeState, oppLifeState])
 
   const handleOppLifeChange = (e) => {
@@ -73,6 +75,7 @@ export default function LifeCounter() {
         console.error('You broke it chief.');
         break;
     }
+    setOppLifeChangeAmountState(1)
   };
 
   const gameEndCheck = () => {
