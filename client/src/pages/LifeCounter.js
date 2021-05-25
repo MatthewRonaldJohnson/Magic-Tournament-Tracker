@@ -1,21 +1,34 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Alert from '../components/Alert';
 
 export default function LifeCounter() {
+  const defaultGameState = {
+    gameFinished: false,
+    winner: '',
+  };
   const [userLifeState, setUserLifeState] = useState(20);
   const [oppLifeState, setOppLifeState] = useState(20);
-  const [userLifeChangeAmountState, setUserLifeChangeUAmountState] =
-    useState(1);
+  const [userLifeChangeAmountState, setUserLifeChangeAmountState] = useState(1);
+  const [oppLifeChangeAmountState, setOppLifeChangeAmountState] = useState(1);
+  const [gameStatusState, setGameStatusState] = useState(defaultGameState);
+  
 
   const handleReset = () => {
     setUserLifeState(20);
     setOppLifeState(20);
+    setUserLifeChangeAmountState(1);
+    setOppLifeChangeAmountState(1);
+    setGameStatusState(defaultGameState)
   };
 
-  const handleULifeAmount = (e) => {
+  const handleUserLifeChangeAmount = (e) => {
     const amount = parseInt(e.target.value);
-    console.log(amount);
-    setUserLifeChangeUAmountState(amount);
+    setUserLifeChangeAmountState(amount);
+  };
+  const handleOppLifeChangeAmount = (e) => {
+    const amount = parseInt(e.target.value);
+    setOppLifeChangeAmountState(amount);
   };
 
   const handleUserLifeChange = (e) => {
@@ -64,38 +77,48 @@ export default function LifeCounter() {
     if (userLifeState > 0 && oppLifeState > 0) {
       return;
     } else if (userLifeState < 1) {
-      console.log("You're dead chief.");
+      setGameStatusState({ winner: 'Opponent', gameFinished: true });
     } else {
-      console.log("They're dead chief.");
+      setGameStatusState({ winner: 'Player', gameFinished: true });
     }
   };
 
   return (
     <div id="LifeCounterContainer" style={{ height: '80vh' }}>
       <div className="Container text-center m-5">
-        <div>
-          <h1>Players Life Total: {userLifeState}</h1>
-          <button
-            className="btn btn-primary p-2 m-1"
-            value={userLifeChangeAmountState}
-            data-operator="+"
-            onClick={handleUserLifeChange}
-          >
-            +
-          </button>
-          <input
-            type="number"
-            min="0"
-            onChange={handleULifeAmount}
-          ></input>
-          <button
-            className="btn btn-primary p-2 m-1"
-            value={userLifeChangeAmountState}
-            data-operator="-"
-            onClick={handleUserLifeChange}
-          >
-            -
-          </button>
+        <h1>Players Life Total: {userLifeState}</h1>
+        <div className="container">
+          <div className="input-group p-3 m-3">
+            <div className="input-group-prepend">
+              <button
+                className="btn btn-primary px-2"
+                type="button"
+                value={userLifeChangeAmountState}
+                data-operator="+"
+                onClick={handleUserLifeChange}
+              >
+                +
+              </button>
+            </div>
+            <input
+              type="number"
+              className="form-control"
+              min="0"
+              onChange={handleUserLifeChangeAmount}
+              value={userLifeChangeAmountState}
+            />
+            <div className="input-group-append">
+              <button
+                type="button"
+                className="btn btn-primary"
+                value={userLifeChangeAmountState}
+                data-operator="-"
+                onClick={handleUserLifeChange}
+              >
+                -
+              </button>
+            </div>
+          </div>
         </div>
       </div>
       <br />
@@ -103,6 +126,10 @@ export default function LifeCounter() {
         <Link to="/" className="btn btn-secondary">
           Home
         </Link>
+        <Alert
+          type="secondary"
+          style={{ opacity: gameStatusState.gameFinished ? 1: 0 }}
+        > {gameStatusState.winner} wins this match! </Alert>
         <button className="btn btn-secondary" onClick={handleReset}>
           Reset
         </button>
@@ -111,12 +138,39 @@ export default function LifeCounter() {
       <br />
       <div className="Container text-center m-5">
         <h1>Opponents Life Total: {oppLifeState}</h1>
-        <button value="1" data-operator="+" onClick={handleOppLifeChange}>
-          +
-        </button>
-        <button value="1" data-operator="-" onClick={handleOppLifeChange}>
-          -
-        </button>
+        <div className="container">
+          <div className="input-group p-3 m-3">
+            <div className="input-group-prepend">
+              <button
+                className="btn btn-primary px-2"
+                type="button"
+                value={oppLifeChangeAmountState}
+                data-operator="+"
+                onClick={handleOppLifeChange}
+              >
+                +
+              </button>
+            </div>
+            <input
+              type="number"
+              className="form-control"
+              min="0"
+              onChange={handleOppLifeChangeAmount}
+              value={oppLifeChangeAmountState}
+            />
+            <div className="input-group-append">
+              <button
+                type="button"
+                className="btn btn-primary"
+                value={oppLifeChangeAmountState}
+                data-operator="-"
+                onClick={handleOppLifeChange}
+              >
+                -
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
