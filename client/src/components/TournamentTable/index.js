@@ -5,7 +5,6 @@ function TournamentTable({data}) {
     let winRecord = 0;
     let lossRecord = 0;
     if(!data) data = [];
-    console.log(data)
     return (
         <table className="table">
             <thead>

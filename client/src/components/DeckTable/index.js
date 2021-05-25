@@ -1,7 +1,6 @@
 import React from 'react'
 
 function DeckTable({data}) {
-    console.log(data)
     return (
         <table className="table">
             <thead>
