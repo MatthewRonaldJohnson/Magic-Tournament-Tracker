@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useStoreContext } from '../utils/GlobalState';
 import SelectOption from '../components/SelectOption';
-import TournamentTable from "../components/TournamentTable"
+import TournamentTable from "../components/TournamentTable";
+import FormatTable from "../components/FormatTable";
+import DeckTable from "../components/DeckTable"
 
 import BarChart from '../components/BarChart';
 import dataMaker from '../utils/CreateBarChartData';
@@ -218,7 +220,8 @@ export default function Analytics() {
       </div>
       <div className='row my-2'>
       {displayMode === "Tournament" ? <TournamentTable data={displayedTournament.tournamentData}/> : <></>}
-             
+      {displayMode === "Format" ? <FormatTable data={chartData}/> : <></>}
+      {displayMode === "Deck"? <DeckTable data={chartData}/>: <></>}
       </div>
     </div>
   );
