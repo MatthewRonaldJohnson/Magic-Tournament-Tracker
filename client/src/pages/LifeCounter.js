@@ -1,8 +1,22 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function LifeCounter() {
   const [userLifeState, setUserLifeState] = useState(20);
   const [oppLifeState, setOppLifeState] = useState(20);
+  const [userLifeChangeAmountState, setUserLifeChangeUAmountState] =
+    useState(1);
+
+  const handleReset = () => {
+    setUserLifeState(20);
+    setOppLifeState(20);
+  };
+
+  const handleULifeAmount = (e) => {
+    const amount = parseInt(e.target.value);
+    console.log(amount);
+    setUserLifeChangeUAmountState(amount);
+  };
 
   const handleUserLifeChange = (e) => {
     const lifeChangeAmount = e.target.value;
@@ -58,24 +72,45 @@ export default function LifeCounter() {
 
   return (
     <div id="LifeCounterContainer" style={{ height: '80vh' }}>
-      <div className="Container text-center">
-        <h1>{userLifeState}</h1>
-        <button value="1" data-operator="+" onClick={handleUserLifeChange}>
-          +
-        </button>
-        <button value="1" data-operator="-" onClick={handleUserLifeChange}>
-          -
-        </button>
+      <div className="Container text-center m-5">
+        <div>
+          <h1>Players Life Total: {userLifeState}</h1>
+          <button
+            className="btn btn-primary p-2 m-1"
+            value={userLifeChangeAmountState}
+            data-operator="+"
+            onClick={handleUserLifeChange}
+          >
+            +
+          </button>
+          <input
+            type="number"
+            min="0"
+            onChange={handleULifeAmount}
+          ></input>
+          <button
+            className="btn btn-primary p-2 m-1"
+            value={userLifeChangeAmountState}
+            data-operator="-"
+            onClick={handleUserLifeChange}
+          >
+            -
+          </button>
+        </div>
       </div>
       <br />
-      <div>
-        <button>Home</button>
-        <button>Reset</button>
+      <div className="Container d-flex justify-content-around m-5">
+        <Link to="/" className="btn btn-secondary">
+          Home
+        </Link>
+        <button className="btn btn-secondary" onClick={handleReset}>
+          Reset
+        </button>
       </div>
 
       <br />
-      <div id="container text-center">
-        <h1>{oppLifeState}</h1>
+      <div className="Container text-center m-5">
+        <h1>Opponents Life Total: {oppLifeState}</h1>
         <button value="1" data-operator="+" onClick={handleOppLifeChange}>
           +
         </button>
