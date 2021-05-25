@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Alert from '../components/Alert';
 
@@ -12,7 +12,7 @@ export default function LifeCounter() {
   const [userLifeChangeAmountState, setUserLifeChangeAmountState] = useState(1);
   const [oppLifeChangeAmountState, setOppLifeChangeAmountState] = useState(1);
   const [gameStatusState, setGameStatusState] = useState(defaultGameState);
-  
+
 
   const handleReset = () => {
     setUserLifeState(20);
@@ -44,13 +44,16 @@ export default function LifeCounter() {
         if (userLifeState > 0) {
           setUserLifeState(userLifeState - parseInt(lifeChangeAmount));
         }
-        gameEndCheck();
         break;
       default:
         console.error('You broke it chief.');
         break;
     }
   };
+
+  useEffect(() => {
+    gameEndCheck();
+  }, [userLifeState, oppLifeState])
 
   const handleOppLifeChange = (e) => {
     const lifeChangeAmount = e.target.value;
@@ -65,7 +68,6 @@ export default function LifeCounter() {
         if (oppLifeState > 0) {
           setOppLifeState(oppLifeState - parseInt(lifeChangeAmount));
         }
-        gameEndCheck();
         break;
       default:
         console.error('You broke it chief.');
@@ -123,14 +125,16 @@ export default function LifeCounter() {
       </div>
       <br />
       <div className="Container d-flex justify-content-around m-5">
-        <Link to="/" className="btn btn-secondary">
-          Home
+          <Link to="/" >
+        <button className="btn btn-primary lcBtn">
+            Home
+        </button>
         </Link>
         <Alert
           type="secondary"
-          style={{ opacity: gameStatusState.gameFinished ? 1: 0 }}
+          style={{ opacity: gameStatusState.gameFinished ? 1 : 0 }}
         > {gameStatusState.winner} wins this match! </Alert>
-        <button className="btn btn-secondary" onClick={handleReset}>
+        <button className="btn btn-primary" onClick={handleReset}>
           Reset
         </button>
       </div>
