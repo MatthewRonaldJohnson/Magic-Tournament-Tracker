@@ -15,7 +15,7 @@ function DeckTable({data}) {
                     return (
                     <tr key={deck}>
                         <td>{deck}</td>
-                        <td>{data.datasets[2].data[index]}%</td>
+                        <td>{parseFloat(data.datasets[2].data[index].toFixed(3))}%</td>
                         <td>{data.datasets[0].data[index]}</td>
                     </tr>)
                 })}
