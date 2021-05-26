@@ -74,7 +74,7 @@ export default function Analytics() {
       setDisplayedTournament({
         id: firstTournament._id,
         name: firstTournament.tournamentName,
-        deckUsed: firstTournament.deck.deckName,
+        deckUsed: firstTournament.deck,
         tournamentData: firstTournament.tournamentData,
       });
     }
@@ -112,7 +112,7 @@ export default function Analytics() {
         setDisplayedTournament({
           id: tournament._id,
           name: tournament.tournamentName,
-          deckUsed: tournament.deck.deckName,
+          deckUsed: tournament.deck,
           tournamentData: tournament.tournamentData,
         });
         setRenderSwtich(!renderSwitch);
@@ -210,18 +210,30 @@ export default function Analytics() {
         <h1 className="col-12 text-center">
           {displayMode === "Tournament" ? <>{displayedTournament.name}</> : <></>}
           {displayMode === "Format" ? <>{displayedFormat}</> : <></>}
-          {displayMode === "Deck" ? <>{displayedDeck.name}</> : <></>}
+          {displayMode === "Deck" ? <>{displayedDeck.name}
+            {displayedDeck.whiteMana ? <div className='wMana bigMana'></div> : <></>}
+            {displayedDeck.blueMana ? <div className='uMana bigMana'></div> : <></>}
+            {displayedDeck.blackMana ? <div className='bMana bigMana'></div> : <></>}
+            {displayedDeck.redMana ? <div className='rMana bigMana'></div> : <></>}
+            {displayedDeck.greenMana ? <div className='gMana bigMana'></div> : <></>}
+          </> : <></>}
         </h1>
         <BarChart data={chartData} renderSwitch={renderSwitch} />
         <h2 className="col-12 text-center">
-          {displayMode === "Tournament" ? <>Playing: {displayedTournament.deckUsed}</> : <></>}
+          {displayMode === "Tournament" ? <>Playing: {displayedTournament.deckUsed.deckName}
+            {displayedTournament.deckUsed.whiteMana ? <div className='wMana bigMana'></div> : <></>}
+            {displayedTournament.deckUsed.blueMana ? <div className='uMana bigMana'></div> : <></>}
+            {displayedTournament.deckUsed.blackMana ? <div className='bMana bigMana'></div> : <></>}
+            {displayedTournament.deckUsed.redMana ? <div className='rMana bigMana'></div> : <></>}
+            {displayedTournament.deckUsed.greenMana ? <div className='gMana bigMana'></div> : <></>}
+          </> : <></>}
           {displayMode === "Deck" ? <>{displayedDeck.format}</> : <></>}
         </h2>
       </div>
       <div className='row my-2'>
-      {displayMode === "Tournament" ? <TournamentTable data={displayedTournament.tournamentData}/> : <></>}
-      {displayMode === "Format" ? <FormatTable data={chartData}/> : <></>}
-      {displayMode === "Deck"? <DeckTable data={chartData}/>: <></>}
+        {displayMode === "Tournament" ? <TournamentTable data={displayedTournament.tournamentData} /> : <></>}
+        {displayMode === "Format" ? <FormatTable data={chartData} /> : <></>}
+        {displayMode === "Deck" ? <DeckTable data={chartData} /> : <></>}
       </div>
     </div>
   );
