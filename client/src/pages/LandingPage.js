@@ -11,7 +11,7 @@ export default function LandingPage() {
         <img src={Logo} alt="Logo"/>
       </div>
       <div className="container text-center mt-5">
-        <h2><span role="img" aria-label="img">✨</span> Magic-Tournament Tracker <span role="img" aria-label="img">✨</span></h2>
+        <h2>Magic-Tournament Tracker</h2>
         <button
           className="btn btn-primary btn-lg"
           onClick={() => loginWithRedirect()}
