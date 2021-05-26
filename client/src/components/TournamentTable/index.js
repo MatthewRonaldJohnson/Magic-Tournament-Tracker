@@ -27,7 +27,7 @@ function TournamentTable({data}) {
                     winRecord={winRecord}
                     lossRecord={lossRecord}
                     opponentsName={match.opponentsName}
-                    opponentDeck={match.opponentDeck.deckName}
+                    opponentDeck={match.opponentDeck}
                     wins={match.wins}
                     losses={match.losses}
                     notes={match.notes}

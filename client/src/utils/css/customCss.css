@@ -115,3 +115,26 @@ p {
 .lcBtn {
   height: 50px;
 }
+
+.wMana, .uMana, .bMana, .rMana, .gMana{
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  border-radius: 100%;
+}
+
+.wMana{
+  background-color: var(--whiteMana);
+}
+.uMana{
+  background-color: var(--blueMana);
+}
+.bMana{
+  background-color: var(--blackMana);
+}
+.rMana{
+  background-color: var(--redMana);
+}
+.gMana{
+  background-color: var(--greenMana);
+}
