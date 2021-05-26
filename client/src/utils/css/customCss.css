@@ -122,6 +122,7 @@ p {
   width: 12px;
   border-radius: 100%;
   border: black solid thin;
+ margin-left: 5px;
 }
 
 .wMana{

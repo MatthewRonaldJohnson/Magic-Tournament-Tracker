@@ -211,6 +211,7 @@ export default function Analytics() {
           {displayMode === "Tournament" ? <>{displayedTournament.name}</> : <></>}
           {displayMode === "Format" ? <>{displayedFormat}</> : <></>}
           {displayMode === "Deck" ? <>{displayedDeck.name}
+          <br></br>
             {displayedDeck.whiteMana ? <div className='wMana bigMana'></div> : <></>}
             {displayedDeck.blueMana ? <div className='uMana bigMana'></div> : <></>}
             {displayedDeck.blackMana ? <div className='bMana bigMana'></div> : <></>}
@@ -221,6 +222,7 @@ export default function Analytics() {
         <BarChart data={chartData} renderSwitch={renderSwitch} />
         <h2 className="col-12 text-center">
           {displayMode === "Tournament" ? <>Playing: {displayedTournament.deckUsed.deckName}
+          <br></br>
             {displayedTournament.deckUsed.whiteMana ? <div className='wMana bigMana'></div> : <></>}
             {displayedTournament.deckUsed.blueMana ? <div className='uMana bigMana'></div> : <></>}
             {displayedTournament.deckUsed.blackMana ? <div className='bMana bigMana'></div> : <></>}
