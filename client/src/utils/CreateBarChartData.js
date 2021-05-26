@@ -26,6 +26,7 @@ export default {
         const numOfTimesFaced = [];
         const numOfWins = [];
         const winPercentage = [];
+        const decks = {};
         for (let i = 0; i < input.length; i++) {
             const matchData = input[i];
             let indexOfMatch = matchups.findIndex(matchup => matchup === matchData.opponentDeck.deckName)
@@ -35,6 +36,7 @@ export default {
                 numOfTimesFaced.push(0);
                 numOfWins.push(0);
                 winPercentage.push(0);
+                decks[matchData.opponentDeck.deckName] = matchData.opponentDeck;
             }
             numOfTimesFaced[indexOfMatch]++;
             if (matchData.result) numOfWins[indexOfMatch]++
@@ -47,6 +49,7 @@ export default {
             data.datasets[0].data = numOfTimesFaced;
             data.datasets[1].data = numOfWins;
             data.datasets[2].data = winPercentage;
+            data.decks = decks;
         }
         return data
     },
@@ -56,6 +59,7 @@ export default {
         const numOfMatches = [];
         const numOfWins = [];
         const winPercentage = [];
+        const deckObjs = {};
         for (let i = 0; i < decks.length; i++) {
             const deck = decks[i];
             let indexOfDeck = deckNames.findIndex(name => name === deck.deckName)
@@ -65,6 +69,7 @@ export default {
                 numOfMatches.push(0);
                 numOfWins.push(0);
                 winPercentage.push(0);
+                deckObjs[deck.deckName] = deck;
             }
         }
         for (let i = 0; i < tournaments.length; i++) {
@@ -84,6 +89,7 @@ export default {
             data.datasets[0].data = numOfMatches;
             data.datasets[1].data = numOfWins;
             data.datasets[2].data = winPercentage;
+            data.decks = deckObjs;
         }
 
         return data
