@@ -81,7 +81,7 @@ body {
   background-color: var(--greenMana);
 }
 .chartContainer {
-  background-color: #f9faf4;
+  background-color: var(--whiteMana);
   padding: 10px;
   border-radius: 15px;
 }
@@ -121,6 +121,7 @@ p {
   height: 12px;
   width: 12px;
   border-radius: 100%;
+  border: black solid thin;
 }
 
 .wMana{
@@ -137,4 +138,9 @@ p {
 }
 .gMana{
   background-color: var(--greenMana);
+}
+
+.bigMana{
+  height: 20px;
+  width: 20px;
 }
