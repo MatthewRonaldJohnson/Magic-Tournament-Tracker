@@ -1,7 +1,7 @@
 # Magic Tournament Tracker
 
 Magic Tournament Tracker is an app for competitive Magic the Gathering players that allows them to easily log match results from tournaments and create visual representations of their win rates versus different matchups.  
-The app also includes some utilities for use during gameplay. Currently just a card search feature, allowing users to quickly get the oracle of a card. 
+The app also includes some utilities for use during gameplay such as a life counter and card search feature.
 
 ## [Deployed Application ](https://magic-tournament-tracker.herokuapp.com/)
 
@@ -9,7 +9,7 @@ This app is deployed with Heroku here: https://magic-tournament-tracker.herokuap
 
 ## Functionality 
 
-Upon navigating to the webpage the User with be asked to log in using Auth0. Magic Tournament Tracker does not store user passwords itself. 
+Upon navigating to the webpage the User with be asked to log in using Auth0. Magic Tournament Tracker does not store user passwords.
 
 ![landing page](./ReadMe_Assets/Landing_Page.PNG)
 
@@ -21,9 +21,13 @@ From here the user can select on Match Input to submit new data. Either choosing
 
 ![match input](./ReadMe_Assets/Match_Input.PNG)
 
-If the user selects on the Analytics option from the menu, they will be shown a graphical representation of their win rate data from the selected tournament. They can change which tournament's data is used to populate the chart with the drop down at the top of the page. 
+If the user selects on the Analytics option from the menu, they will be shown a graphical representation of their data. Here users can choose to display a specific tournament's data, a specific deck's data across all tournament, or their results across an entire format.
 
 ![analytics page](./ReadMe_Assets/Analytics.PNG)
+
+The life counter page displays the life totals for the two players in a game. Here the user can increment or decrement the two life totals and can change the amount the life total will be altered by.
+
+![life counter page](./ReadMe_Assets/Life_Counter.PNG)
 
 The card search page allows user to type in a card name and the card image along with its text will be displayed on the screen.
 
@@ -31,10 +35,8 @@ The card search page allows user to type in a card name and the card image along
 
 ## Future Development
 
-We have many ideas to grow Magic Tournament Tracker in the future.  
-Primarily we would like add the ability to generate graphical charts of win rates with a specific deck across all tournaments.  
-We would like to integrate offline functionality to stash user data submissions and once the user reconnects transfer that over to the database.  
-We want to add more gameplay utilities such as a life counter. 
+In the future we are planning to add offline functionality to the website, allowing users who have downloaded the website as a PWA to submit match data while offline. 
+We are also looking to implement the ability to update/fix mistakes with input matches as well as give the user the ability to delete their decks, tournaments, or matches. 
 
 ## Creators 
 
