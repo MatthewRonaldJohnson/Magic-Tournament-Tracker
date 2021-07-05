@@ -5,7 +5,7 @@ The app also includes some utilities for use during gameplay such as a life coun
 
 ## [Deployed Application ](https://magic-tournament-tracker.herokuapp.com/)
 
-<a link="google.com"></a>
+<a link="google.com">link</a>
 
 This app is deployed with Heroku here: https://magic-tournament-tracker.herokuapp.com/
 
